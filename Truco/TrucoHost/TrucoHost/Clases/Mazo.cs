@@ -8,7 +8,7 @@ namespace TrucoHost.Clases
 {
     class Mazo
     {
-        List<Carta> cartas;
+        private List<Carta> cartas;
 
         public Mazo()
         {

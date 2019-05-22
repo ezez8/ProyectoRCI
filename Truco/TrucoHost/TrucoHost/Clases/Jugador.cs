@@ -8,9 +8,11 @@ namespace TrucoHost.Clases
 {
     class Jugador
     {
+        private List<Carta> cartas;
+
         public Jugador()
         {
-            Console.Write("new jugador");
+            cartas = new List<Carta>();
         }
     }
 }

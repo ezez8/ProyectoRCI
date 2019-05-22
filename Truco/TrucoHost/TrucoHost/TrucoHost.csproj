@@ -48,6 +48,7 @@
     <Compile Include="Clases\Numeracion.cs" />
     <Compile Include="Clases\Palo.cs" />
     <Compile Include="Clases\Partida.cs" />
+    <Compile Include="Clases\Puntaje.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

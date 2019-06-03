@@ -8,9 +8,15 @@ namespace TrucoHost.Clases
 {
     class Partida
     {
-        private List<Jugador> jugadores;
+        private Jugador a;
+        private Jugador b;
+        private Jugador c;
+        private Jugador d;
+
         private Mazo mazo;
         private Puntaje puntaje;
+
+        private Ronda ronda;
 
 
         public Partida()
@@ -19,17 +25,27 @@ namespace TrucoHost.Clases
 
             mazo = new Mazo();
 
-            jugadores = new List<Jugador>();
-            for(int i = 0; i < 4; i++)
-                jugadores.Add(new Jugador());
+            a = new Jugador();
+            b = new Jugador();
+            c = new Jugador();
+            d = new Jugador();
+
+            ronda = new Ronda(puntaje,a,b,c,d);
         }
 
         public void iniciar()
         {
             do
             {
-                
+                mazo.reiniciar();
+                repartir();
+                ronda.iniciar();
             } while (puntaje.gameOver());
+        }
+
+        public void repartir()
+        {
+            a.repartir(mazo.getCarta(),mazo.getCarta(),mazo.getCarta());
         }
     }
 }

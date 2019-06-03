@@ -12,7 +12,16 @@ namespace TrucoHost
         static void Main(string[] args)
         {
             Mazo mazo = new Mazo();
-            Console.ReadKey();
+            mazo.reiniciar();
+            while (true)
+            {
+                Console.WriteLine("-------------------------------------------------");
+                mazo.toString();
+                Console.ReadKey();
+                mazo.getCarta();
+            }
+            
+
         }
     }
 }

@@ -8,15 +8,15 @@ namespace TrucoHost.Clases
 {
     class Puntaje
     {
-        private int equipo1;
-        private int equipo2;
+        private int equipoAC;
+        private int equipoBD;
         private int ronda;
         private int envido;
 
         public Puntaje()
         {
-            equipo1 = 0;
-            equipo2 = 0;
+            equipoAC = 0;
+            equipoBD = 0;
             ronda = 1;
             envido = 0;
         }
@@ -27,14 +27,14 @@ namespace TrucoHost.Clases
             envido = 0;
         }
 
-        public int getEquipo1()
+        public int getequipoAC()
         {
-            return equipo1;
+            return equipoAC;
         }
 
-        public int getEquipo2()
+        public int getequipoBD()
         {
-            return equipo2;
+            return equipoBD;
         }
 
         public int getRonda()
@@ -49,7 +49,7 @@ namespace TrucoHost.Clases
 
         public bool gameOver()
         {
-            if (equipo1 > 23 || equipo2 > 23)
+            if (equipoAC > 23 || equipoBD > 23)
                 return true;
             else
                 return false;
@@ -57,13 +57,12 @@ namespace TrucoHost.Clases
 
         public int ganador()
         {
-            if (equipo1 > equipo2)
+            if (equipoAC > equipoBD)
                 return 1;
-            else if (equipo1 < equipo2)
+            else if (equipoAC < equipoBD)
                 return 2;
             else
                 return 0;
-
         }
 
         public int aumRonda(int aum)
@@ -78,40 +77,40 @@ namespace TrucoHost.Clases
             return envido;
         }
 
-        public int sum_ronda_equipo1()
+        public int sum_ronda_equipoAC()
         {
-            equipo1 += ronda;
-            return equipo1;
+            equipoAC += ronda;
+            return equipoAC;
         }
 
-        public int sum_ronda_equipo2()
+        public int sum_ronda_equipoBD()
         {
-            equipo2 += ronda;
-            return equipo2;
+            equipoBD += ronda;
+            return equipoBD;
         }
 
-        public int sum_envido_equipo1()
+        public int sum_envido_equipoAC()
         {
-            equipo1 += ronda;
-            return equipo1;
+            equipoAC += ronda;
+            return equipoAC;
         }
 
-        public int sum_envido_equipo2()
+        public int sum_envido_equipoBD()
         {
-            equipo2 += ronda;
-            return equipo2;
+            equipoBD += ronda;
+            return equipoBD;
         }
 
-        public int sum_ronda_envido_equipo1()
+        public int sum_ronda_envido_equipoAC()
         {
-            equipo1 += ronda + envido;
-            return equipo1;
+            equipoAC += ronda + envido;
+            return equipoAC;
         }
 
-        public int sum_ronda_envido_equipo2()
+        public int sum_ronda_envido_equipoBD()
         {
-            equipo2 += ronda + envido;
-            return equipo2;
+            equipoBD += ronda + envido;
+            return equipoBD;
         }
 
     }

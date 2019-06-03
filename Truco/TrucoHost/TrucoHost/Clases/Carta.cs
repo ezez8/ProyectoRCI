@@ -15,8 +15,11 @@ namespace TrucoHost.Clases
         {
             this.numeracion = numeracion;
             this.palo = palo;
+        }
 
-            Console.WriteLine(palo.ToString() + " | " + numeracion.ToString());
+        public string toString()
+        {
+            return palo.ToString() + " | " + numeracion.ToString();
         }
     }
 }

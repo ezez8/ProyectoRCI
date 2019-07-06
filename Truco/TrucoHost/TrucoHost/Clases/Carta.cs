@@ -8,8 +8,8 @@ namespace TrucoHost.Clases
 {
     class Carta
     {
-        private Numeracion numeracion;
-        private Palo palo;
+        Numeracion numeracion;
+        Palo palo;
 
         public Carta(Numeracion numeracion, Palo palo)
         {

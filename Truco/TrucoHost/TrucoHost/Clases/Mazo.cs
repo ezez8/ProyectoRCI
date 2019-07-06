@@ -8,8 +8,8 @@ namespace TrucoHost.Clases
 {
     class Mazo
     {
-        private List<Carta> cartas;
-        private Random random;
+        List<Carta> cartas;
+        Random random;
 
         public Mazo()
         {

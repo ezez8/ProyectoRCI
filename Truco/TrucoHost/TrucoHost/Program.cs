@@ -11,14 +11,18 @@ namespace TrucoHost
     {
         static void Main(string[] args)
         {
-            Mazo mazo = new Mazo();
-            mazo.reiniciar();
+            /* Mazo mazo = new Mazo();
+            mazo.reiniciar();*/
             while (true)
             {
-                Console.WriteLine("-------------------------------------------------");
+                Partida partida = new Partida();
+
+                partida.iniciar();
+
+                /*Console.WriteLine("-------------------------------------------------");
                 mazo.toString();
                 Console.ReadKey();
-                mazo.getCarta();
+                mazo.getCarta();*/
             }
             
 

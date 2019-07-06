@@ -8,26 +8,28 @@ namespace TrucoHost.Clases
 {
     class Ronda
     {
-        private Carta a;
-        private Carta b;
-        private Carta c;
-        private Carta d;
-        private Carta vira;
+        Carta a;
+        Carta b;
+        Carta c;
+        Carta d;
+        public Carta vira;
 
-        private Jugador ja;
-        private Jugador jb;
-        private Jugador jc;
-        private Jugador jd;
+        Jugador ja;
+        Jugador jb;
+        Jugador jc;
+        Jugador jd;
 
-        private int gandorR0;
-        private int gandorR1;
-        private int gandorR2;
+        int gandorR0;
+        int gandorR1;
+        int gandorR2;
 
-        private Puntaje puntaje;
+        PuntajeR puntaje;
 
-        public Ronda(Puntaje punta,Jugador ja,Jugador jb,Jugador jc, Jugador jd)
+        Turno turno;
+
+        public Ronda(Jugador ja,Jugador jb,Jugador jc, Jugador jd,Turno turno)
         {
-            this.puntaje = puntaje;
+            this.puntaje = new PuntajeR();
 
             this.ja = ja;
             this.jb = jb;
@@ -37,6 +39,8 @@ namespace TrucoHost.Clases
             gandorR0 = 0;
             gandorR1 = 0;
             gandorR2 = 0;
+
+            this.turno = turno;
         }
 
         public void reiniciar()
@@ -45,17 +49,57 @@ namespace TrucoHost.Clases
             b = null;
             c = null;
             d = null;
+
             puntaje.reiniciar();
+
+            gandorR0 = 0;
+            gandorR1 = 0;
+            gandorR2 = 0;
+
+            vira = null;
+        }
+
+        public void asigVira(Carta vira)
+        {
+            this.vira = vira;
         }
 
         public void iniciar()
         {
-            for (int rondaN = 0; rondaN < 3; rondaN++)
+            for (int rondaN = 1; rondaN < 4; rondaN++)
             {
-                
+                Console.WriteLine("<<< Ronda " + rondaN + " >>>");
+                Console.WriteLine("Puntaje truco: " + puntaje.truco);
+                Console.WriteLine("Puntaje envido: " + puntaje.envido);
+                Console.WriteLine("----------------------------------------------------");
 
-                if (gandorR0 == 0 && gandorR1 != 0)
-                    break;
+                turno.turno = turno.mano;
+
+                for (int turnoN = 1; turnoN < 5; turnoN++)
+                {
+                    Console.WriteLine("< Turno jugador " + turno.turno.id + " >");
+
+                    switch (turno.turno.id)
+                    {
+                        case 'a':
+                            a = turno.turno.jugarCarta();
+                            turno.turno = jb;
+                            break;
+                        case 'b':
+                            b = turno.turno.jugarCarta();
+                            turno.turno = jc;
+                            break;
+                        case 'c':
+                            c = turno.turno.jugarCarta();
+                            turno.turno = jd;
+                            break;
+                        case 'd':
+                            d = turno.turno.jugarCarta();
+                            turno.turno = ja;
+                            break;
+                    }
+                }
+
             }
         }
     }

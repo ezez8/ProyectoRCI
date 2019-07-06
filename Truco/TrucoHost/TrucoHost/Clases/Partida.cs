@@ -8,29 +8,33 @@ namespace TrucoHost.Clases
 {
     class Partida
     {
-        private Jugador a;
-        private Jugador b;
-        private Jugador c;
-        private Jugador d;
+        Jugador a;
+        Jugador b;
+        Jugador c;
+        Jugador d;
 
-        private Mazo mazo;
-        private Puntaje puntaje;
+        Mazo mazo;
+        PuntajeP puntaje;
 
-        private Ronda ronda;
+        Ronda ronda;
+
+        Turno turno;
 
 
         public Partida()
         {
-            puntaje = new Puntaje();
+            puntaje = new PuntajeP();
 
             mazo = new Mazo();
 
-            a = new Jugador();
-            b = new Jugador();
-            c = new Jugador();
-            d = new Jugador();
+            a = new Jugador('a');
+            b = new Jugador('b');
+            c = new Jugador('c');
+            d = new Jugador('d');
 
-            ronda = new Ronda(puntaje,a,b,c,d);
+            turno = new Turno(d);
+
+            ronda = new Ronda(a,b,c,d,turno);
         }
 
         public void iniciar()
@@ -38,14 +42,53 @@ namespace TrucoHost.Clases
             do
             {
                 mazo.reiniciar();
+
+                a.reiniciar();
+                b.reiniciar();
+                c.reiniciar();
+                d.reiniciar();
+
+                ronda.reiniciar();
+
                 repartir();
+
+                switch (turno.mano.id)
+                {
+                    case 'a':
+                        turno.mano = b;
+                        turno.turno = b;
+                        break;
+                    case 'b':
+                        turno.mano = c;
+                        turno.turno = c;
+                        break;
+                    case 'c':
+                        turno.mano = d;
+                        turno.turno = d;
+                        break;
+                    case 'd':
+                        turno.mano = a;
+                        turno.turno = a;
+                        break;
+                }
+                      
+                Console.WriteLine("<<<<<< Nueva Ronda >>>>>>");
+                Console.WriteLine("Puntaje equipo AC: " + puntaje.equipoAC);
+                Console.WriteLine("Puntaje equipo BD: " + puntaje.equipoBD);
+
                 ronda.iniciar();
+
             } while (puntaje.gameOver());
         }
 
         public void repartir()
         {
             a.repartir(mazo.getCarta(),mazo.getCarta(),mazo.getCarta());
+            b.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+            c.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+            d.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+
+            ronda.asigVira(mazo.getCarta());
         }
     }
 }

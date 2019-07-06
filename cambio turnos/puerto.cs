@@ -11,9 +11,14 @@ namespace turnos
     {
         private SerialPort puertoSalida = new SerialPort();
         private SerialPort puertoEntrada = new SerialPort();
+        static public bool pideTruco;
+        static public string carta;
 
         public puerto()
         {
+            pideTruco = false;
+            carta = "###";
+            
             Console.WriteLine("el puerto ha sido creado");
 
             puertoSalida.BaudRate = 9600;
@@ -44,37 +49,110 @@ namespace turnos
 
 
 
-
+        //ENTRADA DE DATOS
 
         private static void llegaronDatos(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
-            Console.WriteLine("Data Received:");
+            evaluarTruco(indata);
+            obtenerCarta(indata);
             Console.Write(indata);
+
         }
 
 
+        private static void evaluarTruco(string trama){
+            if (trama[9].Equals('S'))
+            {
+                pideTruco = true;
+            }
+        }
 
-        public void turnoA()
+        private static void obtenerCarta(string trama)   //11 12 13
         {
-            puertoSalida.WriteLine("$$SASGA#######%%");
+            if (!trama[12].Equals('#'))
+            {
+                if (!trama[11].Equals('#'))
+                {
+                    carta = CharCombine(trama[11], trama[12], trama[13]);
+                }
+                else
+                {
+                    carta = CharCombine('#', trama[12], trama[13]);
+                }
+            }
+            else
+            carta = CharCombine('#','#','#');
         }
 
-        public void turnoB()
+
+
+
+
+        public static string CharCombine(char c0, char c1, char c2)
         {
-            puertoSalida.WriteLine("$$SBSGB#######%%");
+            // Combine chars into array
+            char[] arr = new char[3];
+            arr[0] = c0;
+            arr[1] = c1;
+            arr[2] = c2;
+            // Return new string key
+            return new string(arr);
         }
 
-        public void turnoC()
+
+
+
+        public void prueba()
         {
-            puertoSalida.WriteLine("$$SCSGC#######%%");
+            puertoSalida.WriteLine("$$$");
+            pideTruco = false;
         }
 
-        public void turnoD()
+
+
+
+
+
+
+
+
+        //SALIDA DE DATOS 
+
+
+        public void turno(string destino)
         {
-            puertoSalida.WriteLine("$$SDSGD#######%%");
+            puertoSalida.WriteLine("$$S"+destino+"SGA#######%%");
+            pideTruco = false;
         }
+        
+     
+
+
+        public void terminarPartida(int equipo)
+        {
+            if (equipo == 1)
+            { 
+                puertoSalida.WriteLine("$$STAC########%%");
+            }
+            else
+            {
+                puertoSalida.WriteLine("$$STBD########%%");
+            }
+
+            pideTruco = false;
+        }
+
+        public void repartir(string destino,Carta carta1,Carta carta2,Carta carta3)
+        {
+            puertoSalida.WriteLine("$$S"+destino+"SGD####"+carta1.ToString()+"%%");
+            puertoSalida.WriteLine("$$S"+destino+"SGD####"+carta2.ToString()+"%%");
+            puertoSalida.WriteLine("$$S" + destino + "SGD####" + carta3.ToString() + "%%");
+            pideTruco = false;
+        }
+        
+
 
     }
 

@@ -11,10 +11,12 @@ namespace turnos
         static void Main(string[] args)
         {
             puerto sp = new puerto();
-            sp.turnoA();
-            sp.turnoB();
-            sp.turnoC();
-            sp.turnoD();
+            sp.prueba();
+            sp.prueba();
+            sp.prueba();
+            sp.prueba();
+         
+
             Console.ReadKey();
         }
     }

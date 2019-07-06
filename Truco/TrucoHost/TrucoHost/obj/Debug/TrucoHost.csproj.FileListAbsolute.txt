@@ -1,0 +1,14 @@
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe.config
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.pdb
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.csprojAssemblyReference.cache
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.csproj.CoreCompileInputs.cache
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.exe
+C:\Users\ezequiel\Documents\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.pdb
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe.config
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.pdb
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.csprojAssemblyReference.cache
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.csproj.CoreCompileInputs.cache
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.exe
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.pdb

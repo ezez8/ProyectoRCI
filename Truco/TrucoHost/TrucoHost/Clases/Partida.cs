@@ -71,10 +71,15 @@ namespace TrucoHost.Clases
                         turno.turno = a;
                         break;
                 }
-                      
-                Console.WriteLine("<<<<<< Nueva Ronda >>>>>>");
+
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("<<<<<< PUNTAJE DE LA PARTIDA >>>>>>");
                 Console.WriteLine("Puntaje equipo AC: " + puntaje.equipoAC);
                 Console.WriteLine("Puntaje equipo BD: " + puntaje.equipoBD);
+
+                Console.WriteLine();
+                Console.WriteLine("<<<<<< NUEVA RONDA >>>>>>");
 
                 ronda.iniciar();
 

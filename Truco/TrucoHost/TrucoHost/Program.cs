@@ -11,7 +11,7 @@ namespace TrucoHost
     {
         static void Main(string[] args)
         {
-            /* Mazo mazo = new Mazo();
+           /*  Mazo mazo = new Mazo();
             mazo.reiniciar();*/
             while (true)
             {
@@ -19,7 +19,7 @@ namespace TrucoHost
 
                 partida.iniciar();
 
-                /*Console.WriteLine("-------------------------------------------------");
+               /* Console.WriteLine("-------------------------------------------------");
                 mazo.toString();
                 Console.ReadKey();
                 mazo.getCarta();*/

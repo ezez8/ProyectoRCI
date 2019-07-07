@@ -8,18 +8,18 @@ namespace TrucoHost.Clases
 {
     class Carta
     {
-        Numeracion numeracion;
-        Palo palo;
+        string num;
+        string palo;
 
-        public Carta(Numeracion numeracion, Palo palo)
+        public Carta(string palo, string num)
         {
-            this.numeracion = numeracion;
+            this.num = num;
             this.palo = palo;
         }
 
         public string toString()
         {
-            return palo.ToString() + " | " + numeracion.ToString();
+            return palo + " | " + num;
         }
     }
 }

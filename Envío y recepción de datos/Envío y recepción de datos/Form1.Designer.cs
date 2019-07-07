@@ -108,6 +108,7 @@
             this.CboBaudRate.Size = new System.Drawing.Size(121, 21);
             this.CboBaudRate.TabIndex = 6;
             this.CboBaudRate.Text = "9600";
+            this.CboBaudRate.SelectedIndexChanged += new System.EventHandler(this.CboBaudRate_SelectedIndexChanged);
             // 
             // LblDatosRecibidos
             // 

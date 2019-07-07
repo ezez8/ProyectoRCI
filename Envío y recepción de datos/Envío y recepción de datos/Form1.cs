@@ -189,6 +189,9 @@ namespace Envío_y_recepción_de_datos
 
         }
 
+        private void CboBaudRate_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

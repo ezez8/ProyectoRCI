@@ -45,8 +45,6 @@
     <Compile Include="Clases\Carta.cs" />
     <Compile Include="Clases\Jugador.cs" />
     <Compile Include="Clases\Mazo.cs" />
-    <Compile Include="Clases\Numeracion.cs" />
-    <Compile Include="Clases\Palo.cs" />
     <Compile Include="Clases\Partida.cs" />
     <Compile Include="Clases\PuntajeP.cs" />
     <Compile Include="Clases\PuntajeR.cs" />

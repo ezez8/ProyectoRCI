@@ -1,0 +1,2 @@
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\TrucoUnity\Truco\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\ezequiel\Documents\Drive\Proyectos\RCI\ProyectoRCI\TrucoUnity\Truco\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

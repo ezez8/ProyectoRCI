@@ -11,12 +11,26 @@ public class Truco : MonoBehaviour
    // string strBufferIn;
  //   string strBufferOut;
 
-   // Dropdown ddpuertos = gameObject.getComponent(typeof(Dropdown)) as Dropdown;
+    public Dropdown Ddpuertos;
 
     void configurar()
     {
          // System.IO.Ports.SerialPort puerto1;
          // System.IO.Ports.SerialPort puerto2;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+        // strBufferIn = "";
+        // strBufferOut = "";
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     public void btnBuscarPuertos_click()
@@ -26,21 +40,8 @@ public class Truco : MonoBehaviour
         List<string> puertos = new List<string>();
         puertos = PuertosDisponibles.OfType<string>().ToList();
 
-       // ddpuertos.AddOptions(puertos);
+        Ddpuertos.AddOptions(puertos);
 
         print("puerto " + PuertosDisponibles[0]);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       // strBufferIn = "";
-       // strBufferOut = "";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

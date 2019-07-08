@@ -27,10 +27,10 @@ namespace TrucoHost.Clases
 
             mazo = new Mazo();
 
-            a = new Jugador('a');
-            b = new Jugador('b');
-            c = new Jugador('c');
-            d = new Jugador('d');
+            a = new Jugador("a");
+            b = new Jugador("b");
+            c = new Jugador("c");
+            d = new Jugador("d");
 
             turno = new Turno(d);
 
@@ -54,19 +54,19 @@ namespace TrucoHost.Clases
 
                 switch (turno.mano.id)
                 {
-                    case 'a':
+                    case "a":
                         turno.mano = b;
                         turno.turno = b;
                         break;
-                    case 'b':
+                    case "b":
                         turno.mano = c;
                         turno.turno = c;
                         break;
-                    case 'c':
+                    case "c":
                         turno.mano = d;
                         turno.turno = d;
                         break;
-                    case 'd':
+                    case "d":
                         turno.mano = a;
                         turno.turno = a;
                         break;

@@ -39,6 +39,8 @@
             this.TxtDatosEnviados = new System.Windows.Forms.TextBox();
             this.TxtDatosRecibidos = new System.Windows.Forms.TextBox();
             this.SpPuertos = new System.IO.Ports.SerialPort(this.components);
+            this.BtnNext = new System.Windows.Forms.Button();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnBuscarPuertos
@@ -135,11 +137,32 @@
             // 
             this.SpPuertos.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DatoRecibido);
             // 
+            // BtnNext
+            // 
+            this.BtnNext.Location = new System.Drawing.Point(311, 375);
+            this.BtnNext.Name = "BtnNext";
+            this.BtnNext.Size = new System.Drawing.Size(154, 49);
+            this.BtnNext.TabIndex = 9;
+            this.BtnNext.Text = "Ir al juego";
+            this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.AutoSize = true;
+            this.LblTitulo.Location = new System.Drawing.Point(362, 36);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(96, 13);
+            this.LblTitulo.TabIndex = 10;
+            this.LblTitulo.Text = "CONFIGURACION";
+            // 
             // TrucoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LblTitulo);
+            this.Controls.Add(this.BtnNext);
             this.Controls.Add(this.TxtDatosRecibidos);
             this.Controls.Add(this.TxtDatosEnviados);
             this.Controls.Add(this.LblDatosRecibidos);
@@ -169,6 +192,8 @@
         private System.Windows.Forms.TextBox TxtDatosEnviados;
         private System.Windows.Forms.TextBox TxtDatosRecibidos;
         private System.IO.Ports.SerialPort SpPuertos;
+        private System.Windows.Forms.Button BtnNext;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }
 

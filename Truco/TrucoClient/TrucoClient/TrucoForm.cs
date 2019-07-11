@@ -26,6 +26,7 @@ namespace TrucoClient
             strBufferOut = "";
             BtnConectar.Enabled = false;
             BtnEnviarDatos.Enabled = false;
+            BtnNext.Enabled = false;
         }
 
         //------------DELEGADO ???-------------------
@@ -132,6 +133,7 @@ namespace TrucoClient
                     BtnEnviarDatos.Enabled = false;
                 }
 
+                BtnNext.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -174,6 +176,31 @@ namespace TrucoClient
                 //Si hay algún problema enviando datos se muestra por pantalla el error
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+
+            //SE OCULTA LA CONFIGURACIÓN Y SE MUESTRA EL JUEGO
+
+
+            //SE OCULTA TODO
+            LblTitulo.Visible = false;
+            LblBaudRate.Visible = false;
+            LblDatosRecibidos.Visible = false;
+            BtnBuscarPuertos.Visible = false;
+            BtnConectar.Visible = false;
+            BtnEnviarDatos.Visible = false;
+            BtnNext.Visible = false;
+            CboPuertos.Visible = false;
+            CboBaudRate.Visible = false;
+            TxtDatosEnviados.Visible = false;
+            TxtDatosRecibidos.Visible = false;
+
+            //SE MUESTRA TODO
+            Form gameForm = new TrucoFormGame();
+            gameForm.Show();
+            //this.Close();
         }
     }
 }

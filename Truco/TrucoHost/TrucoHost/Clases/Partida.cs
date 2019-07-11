@@ -8,6 +8,8 @@ namespace TrucoHost.Clases
 {
     class Partida
     {
+        Puerto puerto;
+
         Jugador a;
         Jugador b;
         Jugador c;
@@ -23,18 +25,20 @@ namespace TrucoHost.Clases
 
         public Partida()
         {
+            puerto = new Puerto();
+
             puntaje = new PuntajeP();
 
             mazo = new Mazo();
 
-            a = new Jugador("a");
-            b = new Jugador("b");
-            c = new Jugador("c");
-            d = new Jugador("d");
+            a = new Jugador("A");
+            b = new Jugador("B");
+            c = new Jugador("C");
+            d = new Jugador("D");
 
             turno = new Turno(d);
 
-            ronda = new Ronda(a,b,c,d,turno);
+            ronda = new Ronda(a,b,c,d,turno,puerto);
         }
 
         public void iniciar()
@@ -49,6 +53,7 @@ namespace TrucoHost.Clases
                 d.reiniciar();
 
                 ronda.reiniciar();
+                puerto.recogerCartas();
 
                 repartir();
 
@@ -81,19 +86,28 @@ namespace TrucoHost.Clases
                 Console.WriteLine();
                 Console.WriteLine("<<<<<< NUEVA RONDA >>>>>>");
 
-                ronda.iniciar();
-
+                ronda.iniciar(puntaje);
+                puerto.actualizarPuntaje(puntaje.equipoAC,puntaje.equipoBD);
+                
             } while (puntaje.gameOver());
         }
 
         public void repartir()
         {
             a.repartir(mazo.getCarta(),mazo.getCarta(),mazo.getCarta());
-            b.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
-            c.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
-            d.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+            puerto.repartir(a.id, a.a.id + a.b.id + a.c.id);
 
+            b.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+            puerto.repartir(b.id, b.a.id + b.b.id + b.c.id);
+
+            c.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+            puerto.repartir(c.id, c.a.id + c.b.id + c.c.id);
+
+            d.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
+            puerto.repartir(d.id, d.a.id + d.b.id + d.c.id);
+                        
             ronda.asigVira(mazo.getCarta());
+            puerto.repartirVira(ronda.vira.id);
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Clases\Jugador.cs" />
     <Compile Include="Clases\Mazo.cs" />
     <Compile Include="Clases\Partida.cs" />
+    <Compile Include="Clases\Puerto.cs" />
     <Compile Include="Clases\PuntajeP.cs" />
     <Compile Include="Clases\PuntajeR.cs" />
     <Compile Include="Clases\Ronda.cs" />

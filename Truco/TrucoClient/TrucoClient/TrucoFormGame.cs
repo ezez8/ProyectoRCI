@@ -18,13 +18,19 @@ namespace TrucoClient
             Bitmap img = new Bitmap(Application.StartupPath + @"\img\green-background.jpg");
             this.BackgroundImage = img;
             this.BackgroundImageLayout = ImageLayout.Stretch;
+            TxtLastData.Enabled = false;
+            
         }
 
-        private void TrucoFormGame_Load(object sender, EventArgs e)
+        // TrucoForm configForm = new TrucoForm();
+
+        public void TrucoFormGame_Load(object sender, EventArgs e)
         {
-            PbCarta1.Image = Image.FromFile("E1.png");
+          //  SpPuertosGame = configForm.SpPuertos;
+
+           /* PbCarta1.Image = Image.FromFile("E1.png");
             PbCarta2.Image = Image.FromFile("B7.png");
-            PbCarta3.Image = Image.FromFile("O7.png");
+            PbCarta3.Image = Image.FromFile("O7.png");*/
 
             PbCartaA.Image = Image.FromFile("PLACE.png");
             PbCartaB.Image = Image.FromFile("PLACE.png");
@@ -34,29 +40,29 @@ namespace TrucoClient
         }
 
         //------------DELEGADO ???-------------------
-        private delegate void DelegadoAcceso(string accion);
+        public delegate void DelegadoAcceso(string accion);
         //------------Strings donde se enviarán y recibirán los datos----------
         private string strBufferIn;
         private string strBufferOut;
 
 
-        public void repartir()
+        private void repartir()
         {
 
         }
 
-        private void AccesoForm(string accion)
+       /* private void AccesoForm(string accion)
         {
             strBufferIn = accion;
             //---------AQUÍ SE MANEJA EL MENSAJE RECIBIDO-------------
             TxtLastData.Text = strBufferIn;
             //--------SIMULACIÓN DE PEDIR ENVIDO---------------
-            if (strBufferIn[7] == 'S')
+           /* if (strBufferIn[7] == 'S')
             {
                 EnviarDatos("$$STSG#S######%%");
-            }
+            }*/
             //--------------------------------------------------------
-        }
+        //}
 
         private void EnviarDatos(string msg)
         {
@@ -64,9 +70,9 @@ namespace TrucoClient
             try
             {
                 //---------AQUÍ SE MANEJA EL MENSAJE ENVIADO-------------
-                SpPuertos.DiscardOutBuffer();
+                SpPuertosGame.DiscardOutBuffer();
                 strBufferOut = msg;
-                SpPuertos.Write(msg);
+                SpPuertosGame.Write(msg);
                 //-------------------------------------------------------
             }
             catch (Exception ex)
@@ -77,22 +83,37 @@ namespace TrucoClient
         }
 
         //------------DELEGADO ???-------------------
-        private void AccesoInterrupcion(string accion)
+     /*   private void AccesoInterrupcion(string accion)
         {
             DelegadoAcceso Var_DelegadoAcceso;
             Var_DelegadoAcceso = new DelegadoAcceso(AccesoForm);
             object[] arg = { accion };
             base.Invoke(Var_DelegadoAcceso, arg);
-        }
+        }*/
 
-        private void DatoRecibido(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void DatoRecibidoGame(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             //----Se recibe el mensaje a través de DELEGADOS ???--------------
-            AccesoInterrupcion(SpPuertos.ReadExisting());
+           // AccesoInterrupcion(SpPuertosGame.ReadExisting());
 
             /*string Data_in = SpPuertos.ReadExisting();
             MessageBox.Show(Data_in);
             TxtDatosRecibidos.Text = Data_in;*/
+        }
+
+        private void BtnHabilitarLabel_Click(object sender, EventArgs e)
+        {
+            if (BtnHabilitarLabel.Text == "ON")
+            {
+                TxtLastData.Visible = true;
+                BtnHabilitarLabel.Text = "OFF";
+            }
+            else if(BtnHabilitarLabel.Text == "OFF")
+            {
+                TxtLastData.Visible = false;
+                BtnHabilitarLabel.Text = "ON";
+
+            }
         }
     }
 }

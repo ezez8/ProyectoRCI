@@ -37,9 +37,9 @@
             this.PbCartaD = new System.Windows.Forms.PictureBox();
             this.PbCartaB = new System.Windows.Forms.PictureBox();
             this.PbCartaC = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnHabilitarLabel = new System.Windows.Forms.Button();
             this.TxtLastData = new System.Windows.Forms.TextBox();
-            this.SpPuertos = new System.IO.Ports.SerialPort(this.components);
+            this.SpPuertosGame = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta3)).BeginInit();
@@ -112,24 +112,28 @@
             this.PbCartaC.TabIndex = 6;
             this.PbCartaC.TabStop = false;
             // 
-            // button1
+            // BtnHabilitarLabel
             // 
-            this.button1.Location = new System.Drawing.Point(746, 322);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(19, 23);
-            this.button1.TabIndex = 7;
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnHabilitarLabel.Location = new System.Drawing.Point(723, 322);
+            this.BtnHabilitarLabel.Name = "BtnHabilitarLabel";
+            this.BtnHabilitarLabel.Size = new System.Drawing.Size(42, 23);
+            this.BtnHabilitarLabel.TabIndex = 7;
+            this.BtnHabilitarLabel.Text = "ON";
+            this.BtnHabilitarLabel.UseVisualStyleBackColor = true;
+            this.BtnHabilitarLabel.Click += new System.EventHandler(this.BtnHabilitarLabel_Click);
             // 
             // TxtLastData
             // 
+            this.TxtLastData.Enabled = false;
             this.TxtLastData.Location = new System.Drawing.Point(650, 369);
             this.TxtLastData.Name = "TxtLastData";
             this.TxtLastData.Size = new System.Drawing.Size(134, 20);
             this.TxtLastData.TabIndex = 8;
+            this.TxtLastData.Visible = false;
             // 
-            // SpPuertos
+            // SpPuertosGame
             // 
-            this.SpPuertos.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DatoRecibido);
+            this.SpPuertosGame.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DatoRecibidoGame);
             // 
             // TrucoFormGame
             // 
@@ -138,7 +142,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.TxtLastData);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnHabilitarLabel);
             this.Controls.Add(this.PbCartaC);
             this.Controls.Add(this.PbCartaB);
             this.Controls.Add(this.PbCartaD);
@@ -162,17 +166,16 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox PbCarta1;
-        private System.Windows.Forms.PictureBox PbCarta2;
-        private System.Windows.Forms.PictureBox PbCarta3;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.PictureBox PbCartaA;
-        private System.Windows.Forms.PictureBox PbCartaD;
-        private System.Windows.Forms.PictureBox PbCartaB;
-        private System.Windows.Forms.PictureBox PbCartaC;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox TxtLastData;
-        private System.IO.Ports.SerialPort SpPuertos;
+        private System.Windows.Forms.Button BtnHabilitarLabel;
+        public System.Windows.Forms.TextBox TxtLastData;
+        public System.IO.Ports.SerialPort SpPuertosGame;
+        public System.Windows.Forms.PictureBox PbCarta1;
+        public System.Windows.Forms.PictureBox PbCarta2;
+        public System.Windows.Forms.PictureBox PbCarta3;
+        public System.Windows.Forms.PictureBox PbCartaA;
+        public System.Windows.Forms.PictureBox PbCartaD;
+        public System.Windows.Forms.PictureBox PbCartaB;
+        public System.Windows.Forms.PictureBox PbCartaC;
     }
 }

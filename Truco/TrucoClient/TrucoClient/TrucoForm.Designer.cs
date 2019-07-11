@@ -41,6 +41,8 @@
             this.SpPuertos = new System.IO.Ports.SerialPort(this.components);
             this.BtnNext = new System.Windows.Forms.Button();
             this.LblTitulo = new System.Windows.Forms.Label();
+            this.CboPlayer = new System.Windows.Forms.ComboBox();
+            this.LblSelectPlayer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnBuscarPuertos
@@ -65,7 +67,7 @@
             // 
             // BtnConectar
             // 
-            this.BtnConectar.Location = new System.Drawing.Point(486, 126);
+            this.BtnConectar.Location = new System.Drawing.Point(554, 83);
             this.BtnConectar.Name = "BtnConectar";
             this.BtnConectar.Size = new System.Drawing.Size(115, 55);
             this.BtnConectar.TabIndex = 2;
@@ -156,11 +158,36 @@
             this.LblTitulo.TabIndex = 10;
             this.LblTitulo.Text = "CONFIGURACION";
             // 
+            // CboPlayer
+            // 
+            this.CboPlayer.FormattingEnabled = true;
+            this.CboPlayer.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D"});
+            this.CboPlayer.Location = new System.Drawing.Point(563, 173);
+            this.CboPlayer.Name = "CboPlayer";
+            this.CboPlayer.Size = new System.Drawing.Size(121, 21);
+            this.CboPlayer.TabIndex = 11;
+            // 
+            // LblSelectPlayer
+            // 
+            this.LblSelectPlayer.AutoSize = true;
+            this.LblSelectPlayer.Location = new System.Drawing.Point(459, 177);
+            this.LblSelectPlayer.Name = "LblSelectPlayer";
+            this.LblSelectPlayer.Size = new System.Drawing.Size(98, 13);
+            this.LblSelectPlayer.TabIndex = 12;
+            this.LblSelectPlayer.Text = "Selecciona jugador";
+            this.LblSelectPlayer.Click += new System.EventHandler(this.LblSelectPlayer_Click);
+            // 
             // TrucoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LblSelectPlayer);
+            this.Controls.Add(this.CboPlayer);
             this.Controls.Add(this.LblTitulo);
             this.Controls.Add(this.BtnNext);
             this.Controls.Add(this.TxtDatosRecibidos);
@@ -191,9 +218,11 @@
         private System.Windows.Forms.Label LblDatosRecibidos;
         private System.Windows.Forms.TextBox TxtDatosEnviados;
         private System.Windows.Forms.TextBox TxtDatosRecibidos;
-        private System.IO.Ports.SerialPort SpPuertos;
         private System.Windows.Forms.Button BtnNext;
         private System.Windows.Forms.Label LblTitulo;
+        public System.IO.Ports.SerialPort SpPuertos;
+        private System.Windows.Forms.ComboBox CboPlayer;
+        private System.Windows.Forms.Label LblSelectPlayer;
     }
 }
 

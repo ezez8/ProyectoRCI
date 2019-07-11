@@ -34,17 +34,76 @@ namespace TrucoClient
         //------------Strings donde se enviarán y recibirán los datos----------
         private string strBufferIn;
         private string strBufferOut;
+        private char computadora;
+        private string carta;
+
+        TrucoFormGame gameForm = new TrucoFormGame();
 
         private void AccesoForm(string accion)
         {
             strBufferIn = accion;
             //---------AQUÍ SE MANEJA EL MENSAJE RECIBIDO-------------
             TxtDatosRecibidos.Text = strBufferIn;
-            //--------SIMULACIÓN DE PEDIR ENVIDO---------------
-            if (strBufferIn[7] == 'S')
+            gameForm.TxtLastData.Text = strBufferIn;
+
+            if(strBufferIn[0] == 'I')
             {
-                EnviarDatos("$$STSG#S######%%");
+                //SE ASUME QUE SE VA A REPARTIR
+                if (strBufferIn[1] == computadora)
+                {
+                    //SI LAS CARTAS SON PARA MI SE MUESTRAN LAS CARTAS
+                    for (int i = 2; i < 8; i++)
+                    {
+                        if (i == 2)
+                        {
+                            carta = "";
+                            carta = carta + strBufferIn[i];
+                        }
+
+                        if (i == 3)
+                        {
+                            carta = carta + strBufferIn[i];
+                            gameForm.PbCarta1.Image = Image.FromFile(carta + ".png");
+
+                        }
+
+                        if (i == 4)
+                        {
+                            carta = "";
+                            carta = carta + strBufferIn[i];
+                        }
+
+                        if (i == 5)
+                        {
+                            carta = carta + strBufferIn[i];
+                            gameForm.PbCarta2.Image = Image.FromFile(carta + ".png");
+                        }
+
+                        if (i == 6)
+                        {
+                            carta = "";
+                            carta = carta + strBufferIn[i];
+                        }
+
+                        if (i == 7)
+                        {
+                            carta = carta + strBufferIn[i];
+                            gameForm.PbCarta3.Image = Image.FromFile(carta + ".png");
+                        }
+                    }
+                }
+                else
+                {
+                    //SI LAS CARTAS NO SON PARA MI SE REENVIA LA TRAMA
+                    EnviarDatos(strBufferIn);
+                }
             }
+
+            //--------SIMULACIÓN DE PEDIR ENVIDO---------------
+            /* if (strBufferIn[7] == 'S')
+             {
+                 EnviarDatos("$$STSG#S######%%");
+             }*/
             //--------------------------------------------------------
         }
 
@@ -114,9 +173,13 @@ namespace TrucoClient
                     SpPuertos.Handshake = Handshake.None;
                     SpPuertos.PortName = CboPuertos.Text;
 
+                    gameForm.SpPuertosGame = SpPuertos;
+
                     try
                     {
                         SpPuertos.Open();
+                       // gameForm.SpPuertosGame.Open();
+
                         BtnConectar.Text = "DESCONECTAR";
                         BtnEnviarDatos.Enabled = true;
                     }
@@ -197,10 +260,19 @@ namespace TrucoClient
             TxtDatosEnviados.Visible = false;
             TxtDatosRecibidos.Visible = false;
 
+
+            //
+            computadora = CboPlayer.Text[0];
+            //
+
             //SE MUESTRA TODO
-            Form gameForm = new TrucoFormGame();
             gameForm.Show();
             //this.Close();
+        }
+
+        private void LblSelectPlayer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

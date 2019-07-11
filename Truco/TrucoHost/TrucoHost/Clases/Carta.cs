@@ -8,11 +8,13 @@ namespace TrucoHost.Clases
 {
     class Carta
     {
-        string num;
-        string palo;
+        public string id;
+        public string num;
+        public string palo;
 
-        public Carta(string palo, string num)
+        public Carta(string palo, string num, string id)
         {
+            this.id = id;
             this.num = num;
             this.palo = palo;
         }

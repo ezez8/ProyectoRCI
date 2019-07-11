@@ -27,8 +27,12 @@ namespace TrucoHost.Clases
 
         public int rendirse;
 
-        public Ronda(Jugador ja,Jugador jb,Jugador jc, Jugador jd,Turno turno)
+        public Puerto puerto;
+
+        public Ronda(Jugador ja,Jugador jb,Jugador jc, Jugador jd,Turno turno,Puerto puerto)
         {
+            this.puerto = puerto;
+
             this.puntaje = new PuntajeR();
 
             this.ja = ja;
@@ -73,6 +77,8 @@ namespace TrucoHost.Clases
             for (int i = 0; i < 3; i++)
             {
                 mostrarPuntaje();
+                puerto.actualizarPuntosTruco(puntaje.truco);
+                puerto.actualizarPuntosEnvido(puntaje.envido);
 
                 for (int j = 0; j < 4; j++)
                 {

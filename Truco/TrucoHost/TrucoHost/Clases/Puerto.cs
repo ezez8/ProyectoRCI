@@ -17,6 +17,7 @@ namespace TrucoHost.Clases
         static public bool noQuiero;
         static public int cartaRecibida;
         static public string emisor;
+        static public bool recibido;
 
         public Puerto()
         {
@@ -49,20 +50,23 @@ namespace TrucoHost.Clases
 
 
 
+
+
+
+
+
+
         //ENTRADA DE DATOS
 
         private static void llegaronDatos(object sender, SerialDataReceivedEventArgs e)
         {
-            pideTruco = false;
-            pideEnvido = false;
-            quiero = false;
-            noQuiero = false;
-            cartaRecibida = 0;
+            recibido = false;
 
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
             subTrama(indata);
             Console.Write(indata);
+            
         }
 
 
@@ -239,5 +243,16 @@ namespace TrucoHost.Clases
         {
             puertoSalida.Write("LSTPT" + valorPuntos.ToString());
         }
+
+        public void limpieza()
+        {
+            pideTruco = false;
+            pideEnvido = false;
+            quiero = false;
+            noQuiero = false;
+            cartaRecibida = 0;
+            recibido = true;
+        }
+
     }
 }

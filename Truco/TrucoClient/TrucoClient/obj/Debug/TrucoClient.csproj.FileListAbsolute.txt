@@ -7,3 +7,4 @@ C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoClient\TrucoClient\obj\
 C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoClient\TrucoClient\obj\Debug\TrucoClient.csproj.CoreCompileInputs.cache
 C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoClient\TrucoClient\obj\Debug\TrucoClient.exe
 C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoClient\TrucoClient\obj\Debug\TrucoClient.pdb
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoClient\TrucoClient\obj\Debug\TrucoClient.TrucoForm.resources

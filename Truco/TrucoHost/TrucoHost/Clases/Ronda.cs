@@ -89,19 +89,19 @@ namespace TrucoHost.Clases
 
                     switch (turno.turno.id)
                     {
-                        case "a":
+                        case "A":
                             a = turno.turno.jugarTurno(i,puntaje,jb,ref rendirse);
                             turno.turno = jb;
                             break;
-                        case "b":
+                        case "B":
                             b = turno.turno.jugarTurno(i,puntaje,jc,ref rendirse);
                             turno.turno = jc;
                             break;
-                        case "c":
+                        case "C":
                             c = turno.turno.jugarTurno(i,puntaje,jd,ref rendirse);
                             turno.turno = jd;
                             break;
-                        case "d":
+                        case "D":
                             d = turno.turno.jugarTurno(i,puntaje,ja,ref rendirse);
                             turno.turno = ja;
                             break;

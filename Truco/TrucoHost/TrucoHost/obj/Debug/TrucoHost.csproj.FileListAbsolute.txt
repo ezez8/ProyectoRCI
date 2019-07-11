@@ -19,3 +19,10 @@ C:\Users\ezequiel\Documents\Proyectos\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\
 C:\Users\ezequiel\Documents\Proyectos\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe.config
 C:\Users\ezequiel\Documents\Proyectos\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe
 C:\Users\ezequiel\Documents\Proyectos\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.pdb
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe.config
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.exe
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\bin\Debug\TrucoHost.pdb
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.csprojAssemblyReference.cache
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.csproj.CoreCompileInputs.cache
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.exe
+C:\Users\ASUS.PC\Documents\GitHub\ProyectoRCI\Truco\TrucoHost\TrucoHost\obj\Debug\TrucoHost.pdb

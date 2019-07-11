@@ -59,19 +59,19 @@ namespace TrucoHost.Clases
 
                 switch (turno.mano.id)
                 {
-                    case "a":
+                    case "A":
                         turno.mano = b;
                         turno.turno = b;
                         break;
-                    case "b":
+                    case "B":
                         turno.mano = c;
                         turno.turno = c;
                         break;
-                    case "c":
+                    case "C":
                         turno.mano = d;
                         turno.turno = d;
                         break;
-                    case "d":
+                    case "D":
                         turno.mano = a;
                         turno.turno = a;
                         break;

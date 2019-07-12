@@ -208,9 +208,9 @@ namespace TrucoHost.Clases
         }
 
 
-        public void carta(string carta)
+        public void carta(string carta,string propietario)
         {
-            puerto.Write("LSTC" + carta);
+            puerto.Write("LSTC" + carta+propietario);
         }
 
 

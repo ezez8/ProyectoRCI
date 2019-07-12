@@ -11,13 +11,13 @@ namespace TrucoHost.Clases
     {
         private SerialPort puertoSalida = new SerialPort();
         private SerialPort puertoEntrada = new SerialPort();
-        static public bool pideTruco;
-        static public bool pideEnvido;
-        static public bool quiero;
-        static public bool noQuiero;
-        static public int cartaRecibida;
-        static public string emisor;
-        static public bool recibido;
+        public bool pideTruco;
+        public bool pideEnvido;
+        public bool quiero;
+        public bool noQuiero;
+        public int cartaRecibida;
+        public string emisor;
+        public bool recibido;
 
         public Puerto()
         {
@@ -46,6 +46,13 @@ namespace TrucoHost.Clases
             puertoSalida.Open();
             puertoEntrada.Open();
 
+            pideTruco = false;
+            pideEnvido = false;
+            quiero = false;
+            noQuiero = false;
+            cartaRecibida = 0;
+            recibido = true;
+
         }
 
 
@@ -58,7 +65,7 @@ namespace TrucoHost.Clases
 
         //ENTRADA DE DATOS
 
-        private static void llegaronDatos(object sender, SerialDataReceivedEventArgs e)
+        private void llegaronDatos(object sender, SerialDataReceivedEventArgs e)
         {
             recibido = false;
 
@@ -70,7 +77,7 @@ namespace TrucoHost.Clases
         }
 
 
-        private static void subTrama(string trama)
+        private void subTrama(string trama)
         {
             if (!trama[1].Equals('S'))
             {
@@ -88,7 +95,7 @@ namespace TrucoHost.Clases
 
 
 
-        private static void tramaCanto(string trama)
+        private void tramaCanto(string trama)
         {
             if (trama[3].Equals('T'))
             {
@@ -115,7 +122,7 @@ namespace TrucoHost.Clases
         }
 
 
-        private static void tramaLogica(string trama)
+        private void tramaLogica(string trama)
         {
             if (trama[3].Equals('C'))
             {

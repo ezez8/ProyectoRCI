@@ -13,9 +13,12 @@ namespace TrucoHost.Clases
         public Carta b;
         public Carta c;
 
-        public Jugador(string id)
+        public Puerto puerto;
+
+        public Jugador(string id, Puerto puerto)
         {
             this.id = id;
+            this.puerto = puerto;
         }
 
         public void repartir(Carta a,Carta b,Carta c)
@@ -50,8 +53,9 @@ namespace TrucoHost.Clases
                     Console.WriteLine("5. ENVIDO");
 
                 Console.Write(">> ");
-                          
-                switch (Console.ReadLine())
+
+                puerto.turno(id);
+                switch (readPuerto())
                 {
                     case "1":
                         auxc = a;
@@ -86,7 +90,47 @@ namespace TrucoHost.Clases
 
             } while (auxc == null);
 
+            puerto.carta(auxc.id);
+
             return auxc;
+        }
+
+        public string readPuerto()
+        {
+            
+            while (!puerto.recibido) { }
+
+            string resp = "";
+
+            if (puerto.cartaRecibida != 0)
+            {
+                if (puerto.cartaRecibida == Int32.Parse(a.id))
+                    resp = "1";
+                else if(puerto.cartaRecibida == Int32.Parse(b.id))
+                    resp = "2";
+                else if (puerto.cartaRecibida == Int32.Parse(c.id))
+                    resp = "3";
+            }
+            else if (puerto.pideTruco)
+            {
+                resp = "4";
+            }
+            else if (puerto.pideEnvido)
+            {
+                resp = "5";
+            }
+            else if (puerto.quiero)
+            {
+                resp = "6";
+            }
+            else if (puerto.noQuiero)
+            {
+                resp = "7";
+            }
+
+            puerto.limpieza();
+
+            return resp;
         }
 
         public void responderEnvido(PuntajeR puntaje)
@@ -98,19 +142,20 @@ namespace TrucoHost.Clases
 
                 Console.WriteLine();
                 Console.WriteLine("RESPUESTA AL ENVIDO JUGADOR " + id);
-                Console.WriteLine("1. QUIERO");
-                Console.WriteLine("2. NO QUIERO");
+                Console.WriteLine("6. QUIERO");
+                Console.WriteLine("7. NO QUIERO");
 
                 Console.Write(">> ");
 
-                resp = Console.ReadLine();
+                puerto.envido(id);
+                resp = readPuerto();
 
                 switch (resp)
                 {
-                    case "1":
+                    case "6":
                         puntaje.envido = 2;
                         break;
-                    case "2":
+                    case "7":
                         puntaje.envido = 1;
                         break;
                     default:
@@ -132,26 +177,27 @@ namespace TrucoHost.Clases
 
                 Console.WriteLine();
                 Console.WriteLine("RESPUESTA AL TRUCO JUGADOR " + id);
-                Console.WriteLine("1. QUIERO");
-                Console.WriteLine("2. NO QUIERO");
-                Console.WriteLine("3. QUIERO Y RETRUCO");
+                Console.WriteLine("6. QUIERO");
+                Console.WriteLine("7. NO QUIERO");
+                Console.WriteLine("4. QUIERO Y RETRUCO");
 
                 Console.Write(">> ");
 
-                resp = Console.ReadLine();
+                puerto.truco(id);
+                resp = readPuerto();
 
                 switch (resp)
                 {
-                    case "1":
+                    case "6":
                         puntaje.truco = 3;
                         break;
-                    case "2":
-                        if (id == "a" || id == "c")
+                    case "7":
+                        if (id == "A" || id == "C")
                             rendirse = 1;
                         else
                             rendirse = 2;
                         break;
-                    case "3":
+                    case "4":
                         puntaje.truco = 3;
                         jugadorIzq.responderRetruco(puntaje,this, ref rendirse);
                         break;
@@ -175,26 +221,27 @@ namespace TrucoHost.Clases
 
                 Console.WriteLine();
                 Console.WriteLine("RESPUESTA AL RETRUCO JUGADOR " + id);
-                Console.WriteLine("1. QUIERO");
-                Console.WriteLine("2. NO QUIERO");
-                Console.WriteLine("3. QUIERO Y VALE9");
+                Console.WriteLine("6. QUIERO");
+                Console.WriteLine("7. NO QUIERO");
+                Console.WriteLine("4. QUIERO Y VALE9");
 
                 Console.Write(">> ");
 
-                resp = Console.ReadLine();
+                puerto.truco(id);
+                resp = readPuerto();
 
                 switch (resp)
                 {
-                    case "1":
+                    case "6":
                         puntaje.truco = 6;
                         break;
-                    case "2":
-                        if (id == "a" || id == "c")
+                    case "7":
+                        if (id == "A" || id == "C")
                             rendirse = 1;
                         else
                             rendirse = 2;
                         break;
-                    case "3":
+                    case "4":
                         puntaje.truco = 6;
                         jugadorDer.responderVale9(puntaje,this,ref rendirse);
                         break;
@@ -218,26 +265,27 @@ namespace TrucoHost.Clases
 
                 Console.WriteLine();
                 Console.WriteLine("RESPUESTA AL VALE9 JUGADOR " + id);
-                Console.WriteLine("1. QUIERO");
-                Console.WriteLine("2. NO QUIERO");
-                Console.WriteLine("3. QUIERO Y VALE JUEGO");
+                Console.WriteLine("6. QUIERO");
+                Console.WriteLine("7. NO QUIERO");
+                Console.WriteLine("4. QUIERO Y VALE JUEGO");
 
                 Console.Write(">> ");
 
-                resp = Console.ReadLine();
+                puerto.truco(id);
+                resp = readPuerto();
 
                 switch (resp)
                 {
-                    case "1":
+                    case "6":
                         puntaje.truco = 9;
                         break;
-                    case "2":
-                        if (id == "a" || id == "c")
+                    case "7":
+                        if (id == "A" || id == "C")
                             rendirse = 1;
                         else
                             rendirse = 2;
                         break;
-                    case "3":
+                    case "4":
                         puntaje.truco = 9;
                         jugadorIzq.responderValeJuego(puntaje,this, ref rendirse);
                         break;
@@ -261,20 +309,21 @@ namespace TrucoHost.Clases
 
                 Console.WriteLine();
                 Console.WriteLine("RESPUESTA AL VALE JUEGO JUGADOR " + id);
-                Console.WriteLine("1. QUIERO");
-                Console.WriteLine("2. NO QUIERO");
+                Console.WriteLine("6. QUIERO");
+                Console.WriteLine("7. NO QUIERO");
 
                 Console.Write(">> ");
 
-                resp = Console.ReadLine();
+                puerto.truco(id);
+                resp = readPuerto();
 
                 switch (resp)
                 {
-                    case "1":
+                    case "6":
                         puntaje.truco = 24;
                         break;
-                    case "2":
-                        if (id == "a" || id == "c")
+                    case "7":
+                        if (id == "A" || id == "C")
                             rendirse = 1;
                         else
                             rendirse = 2;

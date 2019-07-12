@@ -9,8 +9,7 @@ namespace TrucoHost.Clases
 {
     class Puerto
     {
-        private SerialPort puertoSalida = new SerialPort();
-        private SerialPort puertoEntrada = new SerialPort();
+        private SerialPort puerto = new SerialPort();
         public bool pideTruco;
         public bool pideEnvido;
         public bool quiero;
@@ -24,27 +23,19 @@ namespace TrucoHost.Clases
 
             Console.WriteLine("el puerto ha sido creado");
 
-            puertoSalida.BaudRate = 9600;
-            puertoSalida.DataBits = 8;
-            puertoSalida.Parity = Parity.None;
-            puertoSalida.StopBits = StopBits.One;
-            puertoSalida.Handshake = Handshake.None;
-            puertoSalida.PortName = "COM1";
-
-
-            puertoEntrada.BaudRate = 9600;
-            puertoEntrada.DataBits = 8;
-            puertoEntrada.Parity = Parity.None;
-            puertoEntrada.StopBits = StopBits.One;
-            puertoEntrada.Handshake = Handshake.None;
-            puertoEntrada.PortName = "COM4";
+            puerto.BaudRate = 9600;
+            puerto.DataBits = 8;
+            puerto.Parity = Parity.None;
+            puerto.StopBits = StopBits.One;
+            puerto.Handshake = Handshake.None;
+            puerto.PortName = "COM1";
 
 
 
-            puertoEntrada.DataReceived += new SerialDataReceivedEventHandler(llegaronDatos); //coloco la interrupcion de entrada de datos
 
-            puertoSalida.Open();
-            puertoEntrada.Open();
+            puerto.DataReceived += new SerialDataReceivedEventHandler(llegaronDatos); //coloco la interrupcion de entrada de datos
+
+            puerto.Open();
 
             pideTruco = false;
             pideEnvido = false;
@@ -67,7 +58,7 @@ namespace TrucoHost.Clases
 
         private void llegaronDatos(object sender, SerialDataReceivedEventArgs e)
         {
-            recibido = false;
+            recibido = true;
 
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
@@ -160,7 +151,7 @@ namespace TrucoHost.Clases
 
         public void prueba(string mensaje)
         {
-            puertoSalida.Write(mensaje);
+            puerto.Write(mensaje);
         }
 
 
@@ -176,18 +167,18 @@ namespace TrucoHost.Clases
 
         public void turno(string jugador)
         {
-            puertoSalida.Write("LSTT" + jugador);
+            puerto.Write("LSTT" + jugador);
         }
 
 
         public void truco(string destino)
         {
-            puertoSalida.Write("CSTT" + destino);
+            puerto.Write("CS"+destino+"T");
         }
 
         public void envido(string destino)
         {
-            puertoSalida.Write("CSTE" + destino);
+            puerto.Write("CS"+destino+"E");
         }
 
 
@@ -195,11 +186,11 @@ namespace TrucoHost.Clases
         {
             if (equipo == 1)
             {
-                puertoSalida.Write("$$STAC########%%");
+                puerto.Write("$$STAC########%%");
             }
             else
             {
-                puertoSalida.Write("$$STBD########%%");
+                puerto.Write("$$STBD########%%");
             }
 
             pideTruco = false;
@@ -208,47 +199,47 @@ namespace TrucoHost.Clases
 
         public void actualizarPuntaje(int puntajeEquipo1, int puntajeEquipo2)
         {
-            puertoSalida.Write("LSTP" + puntajeEquipo1.ToString() + puntajeEquipo2.ToString());
+            puerto.Write("LSTP" + puntajeEquipo1.ToString() + puntajeEquipo2.ToString());
         }
 
         public void finalizarjuego(int equipoGanador)
         {
-            puertoSalida.Write("LSTF" + equipoGanador.ToString());
+            puerto.Write("LSTF" + equipoGanador.ToString());
         }
 
 
         public void carta(string carta)
         {
-            puertoSalida.Write("LSTC" + carta);
+            puerto.Write("LSTC" + carta);
         }
 
 
         public void recogerCartas()
         {
-            puertoSalida.Write("LSTRC");
+            puerto.Write("LSTRC");
         }
 
 
 
         public void repartir(string destino, string cartas)
         {
-            puertoSalida.Write("I" + destino + cartas);
+            puerto.Write("I" + destino + cartas);
         }
 
 
        public void repartirVira(string carta)
         {
-            puertoSalida.Write("ITV"+carta);
+            puerto.Write("ITV"+carta);
         }
 
         public void actualizarPuntosEnvido(int valorPuntos)
         {
-            puertoSalida.Write("LSTPE"+valorPuntos.ToString());
+            puerto.Write("LSTPE"+valorPuntos.ToString());
         }
 
         public void actualizarPuntosTruco(int valorPuntos)
         {
-            puertoSalida.Write("LSTPT" + valorPuntos.ToString());
+            puerto.Write("LSTPT" + valorPuntos.ToString());
         }
 
         public void limpieza()

@@ -46,7 +46,7 @@ namespace TrucoClient
             puerto.Parity = Parity.None;
             puerto.StopBits = StopBits.One;
             puerto.Handshake = Handshake.None;
-            puerto.PortName = TxtPuerto.Text;*/
+            puerto.PortName = TxtPuerto.Text;
 
             try
             {
@@ -55,7 +55,7 @@ namespace TrucoClient
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
-            }
+            }*/
 
         }
 

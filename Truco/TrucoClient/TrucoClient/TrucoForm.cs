@@ -17,6 +17,10 @@ namespace TrucoClient
         public TrucoForm()
         {
             InitializeComponent();
+            Bitmap img = new Bitmap(Application.StartupPath + @"\img\green-background.jpg");
+            this.BackgroundImage = img;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            //TxtLastData.Enabled = false;
         }
         
         //-----Se inicializan los buffers y se desabilitan los botones 'CONECTAR' y 'ENVIAR DATOS'
@@ -27,6 +31,11 @@ namespace TrucoClient
             BtnConectar.Enabled = false;
             BtnEnviarDatos.Enabled = false;
             BtnNext.Enabled = false;
+
+            PbCartaA.Image = Image.FromFile("PLACE.png");
+            PbCartaB.Image = Image.FromFile("PLACE.png");
+            PbCartaC.Image = Image.FromFile("PLACE.png");
+            PbCartaD.Image = Image.FromFile("PLACE.png");
         }
 
         //------------DELEGADO ???-------------------
@@ -36,16 +45,20 @@ namespace TrucoClient
         private string strBufferOut;
         public string computadora;
         public string carta;
+        public string ptosAC;
+        public string ptosBD;
+        public string ptosApuesta;
+        public string ptosEnvido;
 
-        TrucoGame gameForm = new TrucoGame();
+        //TrucoGame gameForm = new TrucoGame();
 
         private void AccesoForm(string accion)
         {
             strBufferIn = accion;
             //---------AQUÍ SE MANEJA EL MENSAJE RECIBIDO-------------
             TxtDatosRecibidos.Text = strBufferIn;
-            gameForm.TxtLastData.Text = strBufferIn;
-
+            //gameForm.TxtLastData.Text = strBufferIn;
+            
             if(strBufferIn[0] == 'I')
             {
                 //SE ASUME QUE SE VA A REPARTIR
@@ -63,8 +76,8 @@ namespace TrucoClient
                         if (i == 3)
                         {
                             carta = carta + strBufferIn[i];
-                            gameForm.PbCarta1.Image = Image.FromFile(carta + ".png");
-                            gameForm.PbCarta1.Tag = carta;
+                            PbCarta1.Image = Image.FromFile(carta + ".png");
+                            PbCarta1.Tag = carta;
                         }
 
                         if (i == 4)
@@ -76,8 +89,8 @@ namespace TrucoClient
                         if (i == 5)
                         {
                             carta = carta + strBufferIn[i];
-                            gameForm.PbCarta2.Image = Image.FromFile(carta + ".png");
-                            gameForm.PbCarta2.Tag = carta;
+                            PbCarta2.Image = Image.FromFile(carta + ".png");
+                            PbCarta2.Tag = carta;
                                                     }
 
                         if (i == 6)
@@ -89,16 +102,20 @@ namespace TrucoClient
                         if (i == 7)
                         {
                             carta = carta + strBufferIn[i];
-                            gameForm.PbCarta3.Image = Image.FromFile(carta + ".png");
-                            gameForm.PbCarta3.Tag = carta;
+                            PbCarta3.Image = Image.FromFile(carta + ".png");
+                            PbCarta3.Tag = carta;
 
                         }
                     }
                 }
-                else if(strBufferIn[1] == 'T')
+                if(strBufferIn[1] == 'T')
                 {
                     carta = strBufferIn[3].ToString() + strBufferIn[4].ToString();
-                    gameForm.PbVira.Image = Image.FromFile(carta + ".png");
+                    PbVira.Image = Image.FromFile(carta + ".png");
+                    if(computadora[0] != 'A')
+                    {
+                        EnviarDatos(strBufferIn);
+                    }
                 }
                 else
                 {
@@ -107,67 +124,133 @@ namespace TrucoClient
                 }
 
 
-            }else if (strBufferIn[0] == 'T')
+            }else if (strBufferIn[0] == 'L')
             {
-                //SE MUESTRA EL BOMBILLITO DEL TURNO EN LA PANTALLA                
-                if (strBufferIn[1] == 'A')
+                if(strBufferIn[3] == 'R')
                 {
-                    gameForm.PbTurnoA.Image = Image.FromFile("turno.png");
+                    PbCartaA.Image = Image.FromFile("PLACE.png");
+                    PbCartaB.Image = Image.FromFile("PLACE.png");
+                    PbCartaC.Image = Image.FromFile("PLACE.png");
+                    PbCartaD.Image = Image.FromFile("PLACE.png");
 
-                    gameForm.PbTurnoA.Visible = false;
-                    gameForm.PbTurnoB.Visible = false;
-                    gameForm.PbTurnoC.Visible = false;
-                    gameForm.PbTurnoD.Visible = false;
-
-
-                    gameForm.PbTurnoA.Visible = true;
-                }
-                if (strBufferIn[1] == 'B')
-                {
-                    gameForm.PbTurnoB.Image = Image.FromFile("turno.png");
-
-                    gameForm.PbTurnoA.Visible = false;
-                    gameForm.PbTurnoB.Visible = false;
-                    gameForm.PbTurnoC.Visible = false;
-                    gameForm.PbTurnoD.Visible = false;
-
-                    gameForm.PbTurnoB.Visible = true;
-                }
-                if (strBufferIn[1] == 'C')
-                {
-                    gameForm.PbTurnoC.Image = Image.FromFile("turno.png");
-
-                    gameForm.PbTurnoA.Visible = false;
-                    gameForm.PbTurnoB.Visible = false;
-                    gameForm.PbTurnoC.Visible = false;
-                    gameForm.PbTurnoD.Visible = false;
-
-                    gameForm.PbTurnoC.Visible = true;
-                }
-                if (strBufferIn[1] == 'D')
-                {
-                    gameForm.PbTurnoD.Image = Image.FromFile("turno.png");
-
-                    gameForm.PbTurnoA.Visible = false;
-                    gameForm.PbTurnoB.Visible = false;
-                    gameForm.PbTurnoC.Visible = false;
-                    gameForm.PbTurnoD.Visible = false;
-
-                    gameForm.PbTurnoD.Visible = true;                   
                 }
 
-                //SI ES TU TURNO JUEGAS 
-
-                if(computadora[0] == strBufferIn[1])
+                else if (strBufferIn[3] == 'T')
                 {
-                    //SE HABILITAN LAS CARTAS
-                    gameForm.PbCarta1.Enabled = true;
-                    gameForm.PbCarta2.Enabled = true;
-                    gameForm.PbCarta3.Enabled = true;
+                    //SE MUESTRA EL BOMBILLITO DEL TURNO EN LA PANTALLA                
+                    if (strBufferIn[4] == 'A')
+                    {
+                        PbTurnoA.Image = Image.FromFile("turno.png");
+
+                        PbTurnoA.Visible = false;
+                        PbTurnoB.Visible = false;
+                        PbTurnoC.Visible = false;
+                        PbTurnoD.Visible = false;
+
+
+                        PbTurnoA.Visible = true;
+                    }
+                    if (strBufferIn[4] == 'B')
+                    {
+                        PbTurnoB.Image = Image.FromFile("turno.png");
+
+                        PbTurnoA.Visible = false;
+                        PbTurnoB.Visible = false;
+                        PbTurnoC.Visible = false;
+                        PbTurnoD.Visible = false;
+
+                        PbTurnoB.Visible = true;
+                    }
+                    if (strBufferIn[4] == 'C')
+                    {
+                        PbTurnoC.Image = Image.FromFile("turno.png");
+
+                        PbTurnoA.Visible = false;
+                        PbTurnoB.Visible = false;
+                        PbTurnoC.Visible = false;
+                        PbTurnoD.Visible = false;
+
+                        PbTurnoC.Visible = true;
+                    }
+                    if (strBufferIn[4] == 'D')
+                    {
+                        PbTurnoD.Image = Image.FromFile("turno.png");
+
+                        PbTurnoA.Visible = false;
+                        PbTurnoB.Visible = false;
+                        PbTurnoC.Visible = false;
+                        PbTurnoD.Visible = false;
+
+                        PbTurnoD.Visible = true;
+                    }
+
+                    //SI ES TU TURNO JUEGAS 
+
+                    if (computadora[0] == strBufferIn[4])
+                    {
+                        //SE HABILITAN LAS CARTAS
+                        PbCarta1.Enabled = true;
+                        PbCarta2.Enabled = true;
+                        PbCarta3.Enabled = true;
+                    }
+                }
+                else if(strBufferIn[3] == 'C')
+                {
+                    if(strBufferIn[6] == 'A')
+                    {
+                        carta = strBufferIn[4].ToString() + strBufferIn[5].ToString();
+                        PbCartaA.Image = Image.FromFile(carta + ".png");
+                    }
+                    if (strBufferIn[6] == 'B')
+                    {
+                        carta = strBufferIn[4].ToString() + strBufferIn[5].ToString();
+                        PbCartaB.Image = Image.FromFile(carta + ".png");
+                    }
+                    if (strBufferIn[6] == 'C')
+                    {
+                        carta = strBufferIn[4].ToString() + strBufferIn[5].ToString();
+                        PbCartaC.Image = Image.FromFile(carta + ".png");
+                    }
+                    if (strBufferIn[6] == 'D')
+                    {
+                        carta = strBufferIn[4].ToString() + strBufferIn[5].ToString();
+                        PbCartaD.Image = Image.FromFile(carta + ".png");
+                    }
                 }
 
+                if (strBufferIn[3] == 'P' && strBufferIn[4] == 'T')
+                {
+                    if (strBufferIn.Length == 6)
+                    {
+                        ptosApuesta = strBufferIn[5].ToString();
+                        LblPuntosApuesta.Text = ptosApuesta;
+                    }
+                    if (strBufferIn.Length == 7)
+                    {
+                        ptosApuesta = strBufferIn[5].ToString() + strBufferIn[6].ToString();
+                        LblPuntosApuesta.Text = ptosApuesta;
+                    }
+                }
+                else if (strBufferIn[3] == 'P' && strBufferIn[4] == 'E')
+                {
+                    ptosEnvido = strBufferIn[5].ToString();
+                    LblPuntosEnvido.Text = ptosEnvido;
+                }
+                else if (strBufferIn[3] == 'P')
+                {
+                    ptosAC = strBufferIn[4].ToString() + strBufferIn[5].ToString();
+                    ptosBD = strBufferIn[6].ToString() + strBufferIn[7].ToString();
+                    LblPuntosAC.Text = ptosAC;
+                    LblPuntosBD.Text = ptosBD;
+                }
+
+                if (computadora[0] != 'A')
+                {
+                    EnviarDatos(strBufferIn);
+                }
             }
 
+            MessageBox.Show("Limpiando buffer");
             strBufferIn = "";
 
             //--------SIMULACIÓN DE PEDIR ENVIDO---------------
@@ -180,22 +263,22 @@ namespace TrucoClient
 
         public void EnvioForm()
         {
-            if(gameForm.PbCartaA.Enabled == true)
+            if(PbCartaA.Enabled == true)
             {
 
             }
 
-            if (gameForm.PbCartaB.Enabled == true)
+            if (PbCartaB.Enabled == true)
             {
 
             }
 
-            if (gameForm.PbCartaC.Enabled == true)
+            if (PbCartaC.Enabled == true)
             {
 
             }
 
-            if (gameForm.PbCartaD.Enabled == true)
+            if (PbCartaD.Enabled == true)
             {
 
             }
@@ -258,7 +341,7 @@ namespace TrucoClient
             try
             {
                 //'CONECTAR' configura el puerto, lo abre, cambia a 'DESCONECTAR' y habilita el botón 'Enviar Datos'
-                if (BtnConectar.Text == "CONECTAR")
+                if (BtnConectar.Text == "CON")
                 {
                     SpPuertos.BaudRate = Int32.Parse(CboBaudRate.Text);
                     SpPuertos.DataBits = 8;
@@ -267,14 +350,16 @@ namespace TrucoClient
                     SpPuertos.Handshake = Handshake.None;
                     SpPuertos.PortName = CboPuertos.Text;
 
-                   // gameForm.SpPuertosGame = SpPuertos;
+                    // gameForm.SpPuertosGame = SpPuertos;
+                    //TxtPuerto.Text = CboPuertos.Text;
+                    //TxtBaudRate.Text = CboBaudRate.Text;
 
                     try
                     {
                         SpPuertos.Open();
                        // gameForm.SpPuertosGame.Open();
 
-                        BtnConectar.Text = "DESCONECTAR";
+                        BtnConectar.Text = "DES";
                         BtnEnviarDatos.Enabled = true;
                     }
                     catch (Exception ex)
@@ -283,10 +368,10 @@ namespace TrucoClient
                     }
                 }
                 //'DESCONECTAR' cierra el puerto, cambia a 'CONECTAR' y desabilita el botón 'Enviar Datos'
-                else if (BtnConectar.Text == "DESCONECTAR")
+                else if (BtnConectar.Text == "DES")
                 {
                     SpPuertos.Close();
-                    BtnConectar.Text = "CONECTAR";
+                    BtnConectar.Text = "CON";
                     BtnEnviarDatos.Enabled = false;
                 }
 
@@ -342,7 +427,7 @@ namespace TrucoClient
 
 
             //SE OCULTA TODO
-            LblTitulo.Visible = false;
+            //LblTitulo.Visible = false;
             LblBaudRate.Visible = false;
             LblDatosRecibidos.Visible = false;
             BtnBuscarPuertos.Visible = false;
@@ -357,15 +442,175 @@ namespace TrucoClient
 
             //
             computadora = CboPlayer.Text;
+            LblPlayer.Text = computadora;
             //
 
             //SE MUESTRA TODO
-            gameForm.Show();
-            gameForm.LblPlayer.Text = computadora;
+            /*gameForm.Show();
+            gameForm.LblPlayer.Text = computadora;*/
             //this.Close();
         }
 
         private void LblSelectPlayer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        ////////////////////////////////////////////////////////////
+
+        private void BtnHabilitarLabel_Click(object sender, EventArgs e)
+        {
+            if (BtnHabilitarLabel.Text == "ON")
+            {
+                /* TxtLastData.Visible = true;
+                 TxtPuerto.Visible = true;
+                 TxtBaudRate.Visible = true;*/
+
+                LblBaudRate.Visible = false;
+                LblDatosRecibidos.Visible = false;
+                BtnBuscarPuertos.Visible = false;
+                BtnConectar.Visible = false;
+                BtnEnviarDatos.Visible = false;
+                BtnNext.Visible = false;
+                CboPuertos.Visible = false;
+                CboBaudRate.Visible = false;
+                TxtDatosEnviados.Visible = false;
+                TxtDatosRecibidos.Visible = false;
+                BtnHabilitarLabel.Text = "OFF";
+            }
+            else if (BtnHabilitarLabel.Text == "OFF")
+            {
+                /*TxtLastData.Visible = false;
+                TxtPuerto.Visible = false;
+                TxtBaudRate.Visible = false;*/
+
+                LblBaudRate.Visible = true;
+                LblDatosRecibidos.Visible = true;
+                BtnBuscarPuertos.Visible = true;
+                BtnConectar.Visible = true;
+                BtnEnviarDatos.Visible = true;
+                BtnNext.Visible = true;
+                CboPuertos.Visible = true;
+                CboBaudRate.Visible = true;
+                TxtDatosEnviados.Visible = true;
+                TxtDatosRecibidos.Visible = true;
+                BtnHabilitarLabel.Text = "ON";
+
+            }
+        }
+
+        private void PbCarta1_Click(object sender, EventArgs e)
+        {
+            if (LblPlayer.Text != "")
+            {
+                if (LblPlayer.Text == "A")
+                {
+                    PbCartaA.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                if (LblPlayer.Text == "B")
+                {
+                    PbCartaB.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                if (LblPlayer.Text == "C")
+                {
+                    PbCartaC.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                if (LblPlayer.Text == "D")
+                {
+                    PbCartaD.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                EnviarDatos("L" + LblPlayer.Text + "S" + "C"+ PbCarta1.Tag);
+            }
+        }
+
+        private void PbCarta2_Click_1(object sender, EventArgs e)
+        {
+            if (LblPlayer.Text != "")
+            {
+                if (LblPlayer.Text == "A")
+                {
+                    PbCartaA.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                if (LblPlayer.Text == "B")
+                {
+                    PbCartaB.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                if (LblPlayer.Text == "C")
+                {
+                    PbCartaC.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                if (LblPlayer.Text == "D")
+                {
+                    PbCartaD.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                EnviarDatos("L" + LblPlayer.Text + "S" + "C" + PbCarta2.Tag);
+            }
+        }
+
+        private void PbCarta3_Click_1(object sender, EventArgs e)
+        {
+            if (LblPlayer.Text != "")
+            {
+                if (LblPlayer.Text == "A")
+                {
+                    PbCartaA.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+
+                if (LblPlayer.Text == "B")
+                {
+                    PbCartaB.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+
+                if (LblPlayer.Text == "C")
+                {
+                    PbCartaC.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+
+                if (LblPlayer.Text == "D")
+                {
+                    PbCartaD.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+                EnviarDatos("L" + LblPlayer.Text + "S" + "C" + PbCarta3.Tag);
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

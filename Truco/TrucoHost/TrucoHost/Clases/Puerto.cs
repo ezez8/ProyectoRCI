@@ -29,7 +29,7 @@ namespace TrucoHost.Clases
             puertoSalida.Parity = Parity.None;
             puertoSalida.StopBits = StopBits.One;
             puertoSalida.Handshake = Handshake.None;
-            puertoSalida.PortName = "COM1";
+            puertoSalida.PortName = "COM5";
 
 
             puertoEntrada.BaudRate = 9600;

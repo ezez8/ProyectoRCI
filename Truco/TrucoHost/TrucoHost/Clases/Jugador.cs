@@ -91,7 +91,7 @@ namespace TrucoHost.Clases
 
             } while (auxc == null);
 
-            puerto.carta(auxc.id);
+            puerto.carta(auxc.id,id);
 
             return auxc;
         }

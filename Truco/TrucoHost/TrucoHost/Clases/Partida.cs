@@ -22,6 +22,7 @@ namespace TrucoHost.Clases
 
         Turno turno;
 
+        int wait = 500;
 
         public Partida()
         {
@@ -96,16 +97,20 @@ namespace TrucoHost.Clases
         {
             a.repartir(mazo.getCarta(),mazo.getCarta(),mazo.getCarta());
             puerto.repartir(a.id, a.a.id + a.b.id + a.c.id);
+            System.Threading.Thread.Sleep(wait);
 
             b.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
             puerto.repartir(b.id, b.a.id + b.b.id + b.c.id);
+            System.Threading.Thread.Sleep(wait);
 
             c.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
             puerto.repartir(c.id, c.a.id + c.b.id + c.c.id);
+            System.Threading.Thread.Sleep(wait);
 
             d.repartir(mazo.getCarta(), mazo.getCarta(), mazo.getCarta());
             puerto.repartir(d.id, d.a.id + d.b.id + d.c.id);
-                        
+            System.Threading.Thread.Sleep(wait);
+
             ronda.asigVira(mazo.getCarta());
             puerto.repartirVira(ronda.vira.id);
         }

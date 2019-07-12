@@ -34,7 +34,7 @@ namespace TrucoClient
         //------------Strings donde se enviarán y recibirán los datos----------
         private string strBufferIn;
         private string strBufferOut;
-        private char computadora;
+        public string computadora;
         private string carta;
 
         TrucoFormGame gameForm = new TrucoFormGame();
@@ -49,7 +49,7 @@ namespace TrucoClient
             if(strBufferIn[0] == 'I')
             {
                 //SE ASUME QUE SE VA A REPARTIR
-                if (strBufferIn[1] == computadora)
+                if (strBufferIn[1] == computadora[0])
                 {
                     //SI LAS CARTAS SON PARA MI SE MUESTRAN LAS CARTAS
                     for (int i = 2; i < 8; i++)
@@ -77,6 +77,7 @@ namespace TrucoClient
                         {
                             carta = carta + strBufferIn[i];
                             gameForm.PbCarta2.Image = Image.FromFile(carta + ".png");
+
                         }
 
                         if (i == 6)
@@ -97,6 +98,67 @@ namespace TrucoClient
                     //SI LAS CARTAS NO SON PARA MI SE REENVIA LA TRAMA
                     EnviarDatos(strBufferIn);
                 }
+
+
+            }else if (strBufferIn[0] == 'T')
+            {
+                //SE MUESTRA EL BOMBILLITO DEL TURNO EN LA PANTALLA                
+                if (strBufferIn[1] == 'A')
+                {
+                    gameForm.PbTurnoA.Image = Image.FromFile("turno.png");
+
+                    gameForm.PbTurnoA.Visible = false;
+                    gameForm.PbTurnoB.Visible = false;
+                    gameForm.PbTurnoC.Visible = false;
+                    gameForm.PbTurnoD.Visible = false;
+
+
+                    gameForm.PbTurnoA.Visible = true;
+                }
+                if (strBufferIn[1] == 'B')
+                {
+                    gameForm.PbTurnoB.Image = Image.FromFile("turno.png");
+
+                    gameForm.PbTurnoA.Visible = false;
+                    gameForm.PbTurnoB.Visible = false;
+                    gameForm.PbTurnoC.Visible = false;
+                    gameForm.PbTurnoD.Visible = false;
+
+                    gameForm.PbTurnoB.Visible = true;
+                }
+                if (strBufferIn[1] == 'C')
+                {
+                    gameForm.PbTurnoC.Image = Image.FromFile("turno.png");
+
+                    gameForm.PbTurnoA.Visible = false;
+                    gameForm.PbTurnoB.Visible = false;
+                    gameForm.PbTurnoC.Visible = false;
+                    gameForm.PbTurnoD.Visible = false;
+
+                    gameForm.PbTurnoC.Visible = true;
+                }
+                if (strBufferIn[1] == 'D')
+                {
+                    gameForm.PbTurnoD.Image = Image.FromFile("turno.png");
+
+                    gameForm.PbTurnoA.Visible = false;
+                    gameForm.PbTurnoB.Visible = false;
+                    gameForm.PbTurnoC.Visible = false;
+                    gameForm.PbTurnoD.Visible = false;
+
+                    gameForm.PbTurnoD.Visible = true;                   
+                }
+
+                //SI ES TU TURNO JUEGAS 
+
+                if(computadora[0] == strBufferIn[1])
+                {
+                    //SE HABILITAN LAS CARTAS
+                    gameForm.PbCarta1.Enabled = true;
+                    gameForm.PbCarta2.Enabled = true;
+                    gameForm.PbCarta3.Enabled = true;
+                }
+
             }
 
             //--------SIMULACIÓN DE PEDIR ENVIDO---------------
@@ -262,11 +324,12 @@ namespace TrucoClient
 
 
             //
-            computadora = CboPlayer.Text[0];
+            computadora = CboPlayer.Text;
             //
 
             //SE MUESTRA TODO
             gameForm.Show();
+            gameForm.LblPlayer.Text = computadora;
             //this.Close();
         }
 

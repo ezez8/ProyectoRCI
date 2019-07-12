@@ -18,11 +18,10 @@ namespace TrucoClient
             Bitmap img = new Bitmap(Application.StartupPath + @"\img\green-background.jpg");
             this.BackgroundImage = img;
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            TxtLastData.Enabled = false;
-            
+            TxtLastData.Enabled = false;            
         }
 
-        // TrucoForm configForm = new TrucoForm();
+        //TrucoForm configForm = new TrucoForm();
 
         public void TrucoFormGame_Load(object sender, EventArgs e)
         {
@@ -36,7 +35,6 @@ namespace TrucoClient
             PbCartaB.Image = Image.FromFile("PLACE.png");
             PbCartaC.Image = Image.FromFile("PLACE.png");
             PbCartaD.Image = Image.FromFile("PLACE.png");
-
         }
 
         //------------DELEGADO ???-------------------
@@ -113,6 +111,96 @@ namespace TrucoClient
                 TxtLastData.Visible = false;
                 BtnHabilitarLabel.Text = "ON";
 
+            }
+        }
+
+        private void PbCarta1_Click_1(object sender, EventArgs e)
+        {
+            if (LblPlayer.Text != "")
+            {
+                if (LblPlayer.Text == "A")
+                {
+                    PbCartaA.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                if (LblPlayer.Text == "B")
+                {
+                    PbCartaB.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                if (LblPlayer.Text == "C")
+                {
+                    PbCartaC.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+
+                if (LblPlayer.Text == "D")
+                {
+                    PbCartaD.Image = PbCarta1.Image;
+                    PbCarta1.Visible = false;
+                }
+            }
+        }
+
+        private void PbCarta2_Click(object sender, EventArgs e)
+        {
+            if (LblPlayer.Text != "")
+            {
+                if (LblPlayer.Text == "A")
+                {
+                    PbCartaA.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                if (LblPlayer.Text == "B")
+                {
+                    PbCartaB.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                if (LblPlayer.Text == "C")
+                {
+                    PbCartaC.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+
+                if (LblPlayer.Text == "D")
+                {
+                    PbCartaD.Image = PbCarta2.Image;
+                    PbCarta2.Visible = false;
+                }
+            }
+        }
+
+        private void PbCarta3_Click(object sender, EventArgs e)
+        {
+            if (LblPlayer.Text != "")
+            {
+                if (LblPlayer.Text == "A")
+                {
+                    PbCartaA.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+
+                if (LblPlayer.Text == "B")
+                {
+                    PbCartaB.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+
+                if (LblPlayer.Text == "C")
+                {
+                    PbCartaC.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
+
+                if (LblPlayer.Text == "D")
+                {
+                    PbCartaD.Image = PbCarta3.Image;
+                    PbCarta3.Visible = false;
+                }
             }
         }
     }

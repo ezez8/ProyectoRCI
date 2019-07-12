@@ -31,10 +31,10 @@ namespace TrucoHost.Clases
 
             mazo = new Mazo();
 
-            a = new Jugador("A");
-            b = new Jugador("B");
-            c = new Jugador("C");
-            d = new Jugador("D");
+            a = new Jugador("A", puerto);
+            b = new Jugador("B", puerto);
+            c = new Jugador("C", puerto);
+            d = new Jugador("D", puerto);
 
             turno = new Turno(d);
 

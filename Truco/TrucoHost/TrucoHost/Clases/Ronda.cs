@@ -124,6 +124,7 @@ namespace TrucoHost.Clases
             }
 
             determinarGanadorR(puntajeP);
+            puerto.actualizarPuntaje(puntajeP.equipoAC, puntajeP.equipoBD);
         }
 
         public void determinarGanadorR(PuntajeP puntajeP)
@@ -286,6 +287,7 @@ namespace TrucoHost.Clases
             Console.WriteLine("**************************************");
             Console.WriteLine("GANADOR FASE " + (i + 1) + ": Equipo " + ganador[i]);
             Console.WriteLine("**************************************");
+
         }
     }
 }

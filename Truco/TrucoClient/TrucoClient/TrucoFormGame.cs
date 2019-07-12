@@ -41,12 +41,12 @@ namespace TrucoClient
             PbCartaD.Image = Image.FromFile("PLACE.png");
 
 
-            puerto.BaudRate = Int32.Parse(TxtBaudRate.Text);
+            /*puerto.BaudRate = Int32.Parse(TxtBaudRate.Text);
             puerto.DataBits = 8;
             puerto.Parity = Parity.None;
             puerto.StopBits = StopBits.One;
             puerto.Handshake = Handshake.None;
-            puerto.PortName = TxtPuerto.Text;
+            puerto.PortName = TxtPuerto.Text;*/
 
             try
             {

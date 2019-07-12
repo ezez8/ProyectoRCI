@@ -53,6 +53,7 @@ namespace TrucoHost.Clases
                     Console.WriteLine("5. ENVIDO");
 
                 Console.Write(">> ");
+                Console.ReadLine();
 
                 puerto.turno(id);
                 switch (readPuerto())

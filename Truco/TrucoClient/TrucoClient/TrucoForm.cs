@@ -168,6 +168,8 @@ namespace TrucoClient
 
             }
 
+            strBufferIn = "";
+
             //--------SIMULACIÓN DE PEDIR ENVIDO---------------
             /* if (strBufferIn[7] == 'S')
              {

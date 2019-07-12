@@ -35,9 +35,9 @@ namespace TrucoClient
         private string strBufferIn;
         private string strBufferOut;
         public string computadora;
-        private string carta;
+        public string carta;
 
-        TrucoFormGame gameForm = new TrucoFormGame();
+        TrucoGame gameForm = new TrucoGame();
 
         private void AccesoForm(string accion)
         {
@@ -64,7 +64,7 @@ namespace TrucoClient
                         {
                             carta = carta + strBufferIn[i];
                             gameForm.PbCarta1.Image = Image.FromFile(carta + ".png");
-
+                            gameForm.PbCarta1.Tag = carta;
                         }
 
                         if (i == 4)
@@ -77,8 +77,8 @@ namespace TrucoClient
                         {
                             carta = carta + strBufferIn[i];
                             gameForm.PbCarta2.Image = Image.FromFile(carta + ".png");
-
-                        }
+                            gameForm.PbCarta2.Tag = carta;
+                                                    }
 
                         if (i == 6)
                         {
@@ -90,8 +90,15 @@ namespace TrucoClient
                         {
                             carta = carta + strBufferIn[i];
                             gameForm.PbCarta3.Image = Image.FromFile(carta + ".png");
+                            gameForm.PbCarta3.Tag = carta;
+
                         }
                     }
+                }
+                else if(strBufferIn[1] == 'T')
+                {
+                    carta = strBufferIn[3].ToString() + strBufferIn[4].ToString();
+                    gameForm.PbVira.Image = Image.FromFile(carta + ".png");
                 }
                 else
                 {
@@ -169,6 +176,29 @@ namespace TrucoClient
             //--------------------------------------------------------
         }
 
+        public void EnvioForm()
+        {
+            if(gameForm.PbCartaA.Enabled == true)
+            {
+
+            }
+
+            if (gameForm.PbCartaB.Enabled == true)
+            {
+
+            }
+
+            if (gameForm.PbCartaC.Enabled == true)
+            {
+
+            }
+
+            if (gameForm.PbCartaD.Enabled == true)
+            {
+
+            }
+        }
+
         //------------DELEGADO ???-------------------
         private void AccesoInterrupcion(string accion)
         {
@@ -235,7 +265,7 @@ namespace TrucoClient
                     SpPuertos.Handshake = Handshake.None;
                     SpPuertos.PortName = CboPuertos.Text;
 
-                    gameForm.SpPuertosGame = SpPuertos;
+                   // gameForm.SpPuertosGame = SpPuertos;
 
                     try
                     {

@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO.Ports;
+
 namespace TrucoClient
 {
-    public partial class TrucoFormGame : Form
+    public partial class TrucoGame : Form
     {
-        public TrucoFormGame()
+        public TrucoGame()
         {
             InitializeComponent();
             Bitmap img = new Bitmap(Application.StartupPath + @"\img\green-background.jpg");
@@ -22,6 +24,8 @@ namespace TrucoClient
         }
 
         //TrucoForm configForm = new TrucoForm();
+
+        
 
         public void TrucoFormGame_Load(object sender, EventArgs e)
         {
@@ -35,6 +39,24 @@ namespace TrucoClient
             PbCartaB.Image = Image.FromFile("PLACE.png");
             PbCartaC.Image = Image.FromFile("PLACE.png");
             PbCartaD.Image = Image.FromFile("PLACE.png");
+
+
+            puerto.BaudRate = Int32.Parse(TxtBaudRate.Text);
+            puerto.DataBits = 8;
+            puerto.Parity = Parity.None;
+            puerto.StopBits = StopBits.One;
+            puerto.Handshake = Handshake.None;
+            puerto.PortName = TxtPuerto.Text;
+
+            try
+            {
+                puerto.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
         }
 
         //------------DELEGADO ???-------------------
@@ -68,9 +90,9 @@ namespace TrucoClient
             try
             {
                 //---------AQUÍ SE MANEJA EL MENSAJE ENVIADO-------------
-                SpPuertosGame.DiscardOutBuffer();
+                puerto.DiscardOutBuffer();
                 strBufferOut = msg;
-                SpPuertosGame.Write(msg);
+                puerto.Write(msg);
                 //-------------------------------------------------------
             }
             catch (Exception ex)
@@ -104,11 +126,15 @@ namespace TrucoClient
             if (BtnHabilitarLabel.Text == "ON")
             {
                 TxtLastData.Visible = true;
+                TxtPuerto.Visible = true;
+                TxtBaudRate.Visible = true;
                 BtnHabilitarLabel.Text = "OFF";
             }
             else if(BtnHabilitarLabel.Text == "OFF")
             {
                 TxtLastData.Visible = false;
+                TxtPuerto.Visible = false;
+                TxtBaudRate.Visible = false;
                 BtnHabilitarLabel.Text = "ON";
 
             }
@@ -141,6 +167,8 @@ namespace TrucoClient
                     PbCartaD.Image = PbCarta1.Image;
                     PbCarta1.Visible = false;
                 }
+
+                EnviarDatos("LC" + LblPlayer.Text + "S" + PbCarta1.Tag);
             }
         }
 
@@ -171,6 +199,8 @@ namespace TrucoClient
                     PbCartaD.Image = PbCarta2.Image;
                     PbCarta2.Visible = false;
                 }
+
+                EnviarDatos("LC" + LblPlayer.Text + "S" + PbCarta2.Tag);
             }
         }
 
@@ -201,6 +231,7 @@ namespace TrucoClient
                     PbCartaD.Image = PbCarta3.Image;
                     PbCarta3.Visible = false;
                 }
+                EnviarDatos("LC" + LblPlayer.Text + "S" + PbCarta3.Tag);
             }
         }
     }

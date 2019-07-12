@@ -1,6 +1,6 @@
 ﻿namespace TrucoClient
 {
-    partial class TrucoFormGame
+    partial class TrucoGame
     {
         /// <summary>
         /// Required designer variable.
@@ -39,12 +39,21 @@
             this.PbCartaC = new System.Windows.Forms.PictureBox();
             this.BtnHabilitarLabel = new System.Windows.Forms.Button();
             this.TxtLastData = new System.Windows.Forms.TextBox();
-            this.SpPuertosGame = new System.IO.Ports.SerialPort(this.components);
             this.PbTurnoB = new System.Windows.Forms.PictureBox();
             this.PbTurnoC = new System.Windows.Forms.PictureBox();
             this.PbTurnoD = new System.Windows.Forms.PictureBox();
             this.PbTurnoA = new System.Windows.Forms.PictureBox();
             this.LblPlayer = new System.Windows.Forms.Label();
+            this.LblTitlePlayer = new System.Windows.Forms.Label();
+            this.LblPtsAC = new System.Windows.Forms.Label();
+            this.LblPtsBD = new System.Windows.Forms.Label();
+            this.LblVira = new System.Windows.Forms.Label();
+            this.PbVira = new System.Windows.Forms.PictureBox();
+            this.BtnTruco = new System.Windows.Forms.Button();
+            this.BtnEnvido = new System.Windows.Forms.Button();
+            this.TxtPuerto = new System.Windows.Forms.TextBox();
+            this.TxtBaudRate = new System.Windows.Forms.TextBox();
+            this.puerto = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta3)).BeginInit();
@@ -56,10 +65,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbVira)).BeginInit();
             this.SuspendLayout();
             // 
             // PbCarta1
             // 
+            this.PbCarta1.BackColor = System.Drawing.Color.Transparent;
+            this.PbCarta1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PbCarta1.Enabled = false;
             this.PbCarta1.Location = new System.Drawing.Point(248, 302);
             this.PbCarta1.Name = "PbCarta1";
@@ -71,6 +83,8 @@
             // 
             // PbCarta2
             // 
+            this.PbCarta2.BackColor = System.Drawing.Color.Transparent;
+            this.PbCarta2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PbCarta2.Enabled = false;
             this.PbCarta2.Location = new System.Drawing.Point(367, 302);
             this.PbCarta2.Name = "PbCarta2";
@@ -82,6 +96,8 @@
             // 
             // PbCarta3
             // 
+            this.PbCarta3.BackColor = System.Drawing.Color.Transparent;
+            this.PbCarta3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PbCarta3.Enabled = false;
             this.PbCarta3.Location = new System.Drawing.Point(481, 302);
             this.PbCarta3.Name = "PbCarta3";
@@ -133,7 +149,7 @@
             // 
             // BtnHabilitarLabel
             // 
-            this.BtnHabilitarLabel.Location = new System.Drawing.Point(723, 322);
+            this.BtnHabilitarLabel.Location = new System.Drawing.Point(723, 279);
             this.BtnHabilitarLabel.Name = "BtnHabilitarLabel";
             this.BtnHabilitarLabel.Size = new System.Drawing.Size(42, 23);
             this.BtnHabilitarLabel.TabIndex = 7;
@@ -144,15 +160,11 @@
             // TxtLastData
             // 
             this.TxtLastData.Enabled = false;
-            this.TxtLastData.Location = new System.Drawing.Point(650, 369);
+            this.TxtLastData.Location = new System.Drawing.Point(652, 316);
             this.TxtLastData.Name = "TxtLastData";
             this.TxtLastData.Size = new System.Drawing.Size(134, 20);
             this.TxtLastData.TabIndex = 8;
             this.TxtLastData.Visible = false;
-            // 
-            // SpPuertosGame
-            // 
-            this.SpPuertosGame.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DatoRecibidoGame);
             // 
             // PbTurnoB
             // 
@@ -202,18 +214,125 @@
             // 
             this.LblPlayer.AutoSize = true;
             this.LblPlayer.BackColor = System.Drawing.Color.Transparent;
-            this.LblPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPlayer.Location = new System.Drawing.Point(44, 48);
+            this.LblPlayer.Font = new System.Drawing.Font("Cooper Black", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPlayer.Location = new System.Drawing.Point(66, 186);
             this.LblPlayer.Name = "LblPlayer";
             this.LblPlayer.Size = new System.Drawing.Size(0, 42);
             this.LblPlayer.TabIndex = 14;
             // 
-            // TrucoFormGame
+            // LblTitlePlayer
+            // 
+            this.LblTitlePlayer.AutoSize = true;
+            this.LblTitlePlayer.BackColor = System.Drawing.Color.Transparent;
+            this.LblTitlePlayer.Font = new System.Drawing.Font("Cooper Black", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitlePlayer.ForeColor = System.Drawing.Color.White;
+            this.LblTitlePlayer.Location = new System.Drawing.Point(12, 129);
+            this.LblTitlePlayer.Name = "LblTitlePlayer";
+            this.LblTitlePlayer.Size = new System.Drawing.Size(160, 31);
+            this.LblTitlePlayer.TabIndex = 15;
+            this.LblTitlePlayer.Text = "JUGADOR";
+            // 
+            // LblPtsAC
+            // 
+            this.LblPtsAC.AutoSize = true;
+            this.LblPtsAC.BackColor = System.Drawing.Color.Transparent;
+            this.LblPtsAC.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPtsAC.ForeColor = System.Drawing.Color.White;
+            this.LblPtsAC.Location = new System.Drawing.Point(14, 21);
+            this.LblPtsAC.Name = "LblPtsAC";
+            this.LblPtsAC.Size = new System.Drawing.Size(162, 21);
+            this.LblPtsAC.TabIndex = 16;
+            this.LblPtsAC.Text = "Pts. Equipo AC:";
+            // 
+            // LblPtsBD
+            // 
+            this.LblPtsBD.AutoSize = true;
+            this.LblPtsBD.BackColor = System.Drawing.Color.Transparent;
+            this.LblPtsBD.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPtsBD.ForeColor = System.Drawing.Color.White;
+            this.LblPtsBD.Location = new System.Drawing.Point(15, 64);
+            this.LblPtsBD.Name = "LblPtsBD";
+            this.LblPtsBD.Size = new System.Drawing.Size(161, 21);
+            this.LblPtsBD.TabIndex = 17;
+            this.LblPtsBD.Text = "Pts. Equipo BD:";
+            // 
+            // LblVira
+            // 
+            this.LblVira.AutoSize = true;
+            this.LblVira.BackColor = System.Drawing.Color.Transparent;
+            this.LblVira.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVira.ForeColor = System.Drawing.Color.White;
+            this.LblVira.Location = new System.Drawing.Point(702, 21);
+            this.LblVira.Name = "LblVira";
+            this.LblVira.Size = new System.Drawing.Size(64, 21);
+            this.LblVira.TabIndex = 18;
+            this.LblVira.Text = "VIRA";
+            // 
+            // PbVira
+            // 
+            this.PbVira.BackColor = System.Drawing.Color.Transparent;
+            this.PbVira.Location = new System.Drawing.Point(699, 50);
+            this.PbVira.Name = "PbVira";
+            this.PbVira.Size = new System.Drawing.Size(66, 96);
+            this.PbVira.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PbVira.TabIndex = 19;
+            this.PbVira.TabStop = false;
+            // 
+            // BtnTruco
+            // 
+            this.BtnTruco.BackColor = System.Drawing.Color.Snow;
+            this.BtnTruco.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnTruco.Location = new System.Drawing.Point(19, 302);
+            this.BtnTruco.Name = "BtnTruco";
+            this.BtnTruco.Size = new System.Drawing.Size(192, 43);
+            this.BtnTruco.TabIndex = 20;
+            this.BtnTruco.Text = "TRUCO";
+            this.BtnTruco.UseVisualStyleBackColor = false;
+            // 
+            // BtnEnvido
+            // 
+            this.BtnEnvido.BackColor = System.Drawing.Color.Snow;
+            this.BtnEnvido.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEnvido.Location = new System.Drawing.Point(19, 355);
+            this.BtnEnvido.Name = "BtnEnvido";
+            this.BtnEnvido.Size = new System.Drawing.Size(192, 43);
+            this.BtnEnvido.TabIndex = 21;
+            this.BtnEnvido.Text = "ENVIDO";
+            this.BtnEnvido.UseVisualStyleBackColor = false;
+            // 
+            // TxtPuerto
+            // 
+            this.TxtPuerto.Enabled = false;
+            this.TxtPuerto.Location = new System.Drawing.Point(652, 355);
+            this.TxtPuerto.Name = "TxtPuerto";
+            this.TxtPuerto.Size = new System.Drawing.Size(71, 20);
+            this.TxtPuerto.TabIndex = 22;
+            this.TxtPuerto.Visible = false;
+            // 
+            // TxtBaudRate
+            // 
+            this.TxtBaudRate.Enabled = false;
+            this.TxtBaudRate.Location = new System.Drawing.Point(652, 390);
+            this.TxtBaudRate.Name = "TxtBaudRate";
+            this.TxtBaudRate.Size = new System.Drawing.Size(71, 20);
+            this.TxtBaudRate.TabIndex = 23;
+            this.TxtBaudRate.Visible = false;
+            // 
+            // TrucoGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(798, 431);
+            this.Controls.Add(this.TxtBaudRate);
+            this.Controls.Add(this.TxtPuerto);
+            this.Controls.Add(this.BtnEnvido);
+            this.Controls.Add(this.BtnTruco);
+            this.Controls.Add(this.PbVira);
+            this.Controls.Add(this.LblVira);
+            this.Controls.Add(this.LblPtsBD);
+            this.Controls.Add(this.LblPtsAC);
+            this.Controls.Add(this.LblTitlePlayer);
             this.Controls.Add(this.LblPlayer);
             this.Controls.Add(this.PbTurnoA);
             this.Controls.Add(this.PbTurnoD);
@@ -228,8 +347,8 @@
             this.Controls.Add(this.PbCarta3);
             this.Controls.Add(this.PbCarta2);
             this.Controls.Add(this.PbCarta1);
-            this.Name = "TrucoFormGame";
-            this.Text = "TrucoFormGame";
+            this.Name = "TrucoGame";
+            this.Text = "TrucoGame";
             this.Load += new System.EventHandler(this.TrucoFormGame_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbCarta2)).EndInit();
@@ -242,6 +361,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbVira)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,7 +371,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button BtnHabilitarLabel;
         public System.Windows.Forms.TextBox TxtLastData;
-        public System.IO.Ports.SerialPort SpPuertosGame;
         public System.Windows.Forms.PictureBox PbCarta1;
         public System.Windows.Forms.PictureBox PbCarta2;
         public System.Windows.Forms.PictureBox PbCarta3;
@@ -264,5 +383,15 @@
         public System.Windows.Forms.PictureBox PbTurnoD;
         public System.Windows.Forms.PictureBox PbTurnoA;
         public System.Windows.Forms.Label LblPlayer;
+        public System.Windows.Forms.Label LblTitlePlayer;
+        private System.Windows.Forms.Label LblPtsAC;
+        private System.Windows.Forms.Label LblPtsBD;
+        private System.Windows.Forms.Label LblVira;
+        public System.Windows.Forms.PictureBox PbVira;
+        private System.Windows.Forms.Button BtnTruco;
+        private System.Windows.Forms.Button BtnEnvido;
+        public System.Windows.Forms.TextBox TxtPuerto;
+        public System.Windows.Forms.TextBox TxtBaudRate;
+        private System.IO.Ports.SerialPort puerto;
     }
 }

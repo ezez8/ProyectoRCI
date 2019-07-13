@@ -78,7 +78,10 @@ namespace TrucoHost.Clases
             {
                 mostrarPuntaje();
                 puerto.actualizarPuntosTruco(puntaje.truco);
+                System.Threading.Thread.Sleep(500);
                 puerto.actualizarPuntosEnvido(puntaje.envido);
+                System.Threading.Thread.Sleep(500);
+
 
                 for (int j = 0; j < 4; j++)
                 {

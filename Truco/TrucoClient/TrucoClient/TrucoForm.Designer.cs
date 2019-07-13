@@ -152,7 +152,7 @@
             // LblDatosRecibidos
             // 
             this.LblDatosRecibidos.AutoSize = true;
-            this.LblDatosRecibidos.Location = new System.Drawing.Point(648, 413);
+            this.LblDatosRecibidos.Location = new System.Drawing.Point(447, 413);
             this.LblDatosRecibidos.Name = "LblDatosRecibidos";
             this.LblDatosRecibidos.Size = new System.Drawing.Size(80, 13);
             this.LblDatosRecibidos.TabIndex = 6;
@@ -167,9 +167,9 @@
             // 
             // TxtDatosRecibidos
             // 
-            this.TxtDatosRecibidos.Location = new System.Drawing.Point(734, 410);
+            this.TxtDatosRecibidos.Location = new System.Drawing.Point(524, 410);
             this.TxtDatosRecibidos.Name = "TxtDatosRecibidos";
-            this.TxtDatosRecibidos.Size = new System.Drawing.Size(54, 20);
+            this.TxtDatosRecibidos.Size = new System.Drawing.Size(264, 20);
             this.TxtDatosRecibidos.TabIndex = 8;
             // 
             // SpPuertos

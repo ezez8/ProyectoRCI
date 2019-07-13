@@ -113,6 +113,7 @@ namespace TrucoHost.Clases
 
             ronda.asigVira(mazo.getCarta());
             puerto.repartirVira(ronda.vira.id);
+            System.Threading.Thread.Sleep(wait);
         }
     }
 }

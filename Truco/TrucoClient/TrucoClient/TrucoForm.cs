@@ -250,7 +250,7 @@ namespace TrucoClient
                 }
             }
 
-            MessageBox.Show("Limpiando buffer");
+            //MessageBox.Show("Limpiando buffer");
             strBufferIn = "";
 
             //--------SIMULACIÓN DE PEDIR ENVIDO---------------

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.IO.Ports;
+using System.Diagnostics;
 
 namespace TrucoClient
 {
@@ -196,6 +197,8 @@ namespace TrucoClient
                 }
                 else if(strBufferIn[3] == 'C')
                 {
+                   // TxtDatosRecibidos.Text = "Entré en C";
+
                     if(strBufferIn[6] == 'A')
                     {
                         carta = strBufferIn[4].ToString() + strBufferIn[5].ToString();

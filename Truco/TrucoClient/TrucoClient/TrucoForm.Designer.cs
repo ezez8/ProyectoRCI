@@ -68,6 +68,7 @@
             this.LblPuntosApuesta = new System.Windows.Forms.Label();
             this.LblEnvido = new System.Windows.Forms.Label();
             this.LblApuesta = new System.Windows.Forms.Label();
+            this.puertoOpcional = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PbVira)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbTurnoD)).BeginInit();
@@ -174,6 +175,7 @@
             // 
             // SpPuertos
             // 
+            this.SpPuertos.PortName = "COM20";
             this.SpPuertos.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DatoRecibido);
             // 
             // BtnNext
@@ -504,6 +506,11 @@
             this.LblApuesta.Text = "Apuesta:";
             this.LblApuesta.Click += new System.EventHandler(this.label4_Click);
             // 
+            // puertoOpcional
+            // 
+            this.puertoOpcional.PortName = "COM30";
+            this.puertoOpcional.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.DatoRecibidoOpcional);
+            // 
             // TrucoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,6 +615,7 @@
         private System.Windows.Forms.Label LblPuntosApuesta;
         private System.Windows.Forms.Label LblEnvido;
         private System.Windows.Forms.Label LblApuesta;
+        private System.IO.Ports.SerialPort puertoOpcional;
     }
 }
 

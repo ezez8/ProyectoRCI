@@ -52,10 +52,11 @@ namespace TrucoHost.Clases
                 if(i == 0)
                     Console.WriteLine("5. ENVIDO");
 
+                puerto.turno(id);
+                
                 Console.Write(">> ");
                 Console.ReadLine();
 
-                puerto.turno(id);
                 switch (readPuerto())
                 {
                     case "1":
@@ -98,13 +99,16 @@ namespace TrucoHost.Clases
 
         public string readPuerto()
         {
-            
+            Console.WriteLine("Entra en readPuerto, puerto.recibido: "+ puerto.recibido);
             while (!puerto.recibido) { }
+            Console.WriteLine("sale del while raro, puerto.recibido: " + puerto.recibido);
 
             string resp = "";
 
             if (puerto.cartaRecibida != 0)
             {
+                Console.WriteLine("va a comparar "+puerto.cartaRecibida+" con estas "+a.id+b.id+c.id );
+
                 if (puerto.cartaRecibida == Int32.Parse(a.id))
                     resp = "1";
                 else if(puerto.cartaRecibida == Int32.Parse(b.id))

@@ -303,6 +303,11 @@ namespace TrucoClient
             TxtDatosRecibidos.Text = Data_in;*/
         }
 
+        private void DatoRecibidoOpcional(object sender, SerialDataReceivedEventArgs e)
+        {
+            AccesoInterrupcion(puertoOpcional.ReadExisting());
+        }
+
         private void BtnBuscarPuertos_Click(object sender, EventArgs e)
         {
             //Se buscan los puertos disponibles de la computadora
@@ -350,6 +355,23 @@ namespace TrucoClient
                     SpPuertos.Handshake = Handshake.None;
                     SpPuertos.PortName = CboPuertos.Text;
 
+                    puertoOpcional.BaudRate = Int32.Parse(CboBaudRate.Text);
+                    puertoOpcional.DataBits = 8;
+                    puertoOpcional.Parity = Parity.None;
+                    puertoOpcional.StopBits = StopBits.One;
+                    puertoOpcional.Handshake = Handshake.None;
+                    if(CboPuertos.Text == "COM2")
+                    {
+                        puertoOpcional.PortName = "COM1";
+                    }
+                    else if (CboPuertos.Text == "COM3")
+                    {
+                        puertoOpcional.PortName = "COM2";
+                    }
+                    else if (CboPuertos.Text == "COM4")
+                    {
+                        puertoOpcional.PortName = "COM3";
+                    }
                     // gameForm.SpPuertosGame = SpPuertos;
                     //TxtPuerto.Text = CboPuertos.Text;
                     //TxtBaudRate.Text = CboBaudRate.Text;
@@ -357,6 +379,7 @@ namespace TrucoClient
                     try
                     {
                         SpPuertos.Open();
+                        puertoOpcional.Open();
                        // gameForm.SpPuertosGame.Open();
 
                         BtnConectar.Text = "DES";
@@ -614,5 +637,7 @@ namespace TrucoClient
         {
 
         }
+
+
     }
 }
